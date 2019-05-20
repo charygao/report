@@ -124,6 +124,40 @@
 \end_layout
 
 \begin_layout Standard
+\align center
+
+\series bold
+填写说明
+\end_layout
+
+\begin_layout Enumerate
+所有参赛项目必须为一个基本完整的设计。作品报告书旨在能够清晰准确地阐述（或图示）该参赛队的参赛项目（或方案）。
+\end_layout
+
+\begin_layout Enumerate
+作品报告采用A4纸撰写。除标题外，所有内容必需为宋体、小四号字、1.5倍行距。
+\end_layout
+
+\begin_layout Enumerate
+作品报告中各项目说明文字部分仅供参考，作品报告书撰写完毕后，请删除所有说明文字。(本页不删除)
+\end_layout
+
+\begin_layout Enumerate
+作品报告模板里已经列的内容仅供参考，作者可以在此基础上增加内容或对文档结构进行微调。
+\end_layout
+
+\begin_layout Enumerate
+为保证网评的公平、公正，作品报告中应避免出现作者所在学校、院系和指导教师等泄露身份的信息。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset toc
 LatexCommand tableofcontents
 
@@ -199,16 +233,158 @@ LatexCommand tableofcontents
 系统设计
 \end_layout
 
+\begin_layout Standard
+本节首先明确威胁模型，从而对我们所实现的系统解决问题的范围进行界定，然后描述该系统的使用流程设计，最后描述该系统的架构设计。
+\end_layout
+
 \begin_layout Subsection
 威胁建模
+\end_layout
+
+\begin_layout Standard
+对文档溯源问题做如下定义：组织 A（如政府、企业部门）向成员 B、C 提供了一份保密的文档，一段时间后，该文档出现在了互联网或非授权人员手中。现在组织
+ A 希望确定该文档是被哪位成员泄露。
+\end_layout
+
+\begin_layout Standard
+做如下假定：
+\end_layout
+
+\begin_layout Enumerate
+组织 A 对文档保密措施完善，文档不可能由组织 A 泄露；
+\end_layout
+
+\begin_layout Enumerate
+该文档为打印版本，或难以修改的电子版本如扫描 PDF 文件、图片集。
+\end_layout
+
+\begin_layout Standard
+可能出现的文档泄露为 A 或 B 之一为直接责任人，将文档以拍照、扫描、复印等方式传递给本没有权限访问该文档的人。
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/threat-model.dot
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+威胁模型示意图
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 使用流程设计
 \end_layout
 
+\begin_layout Subsubsection
+文档发布
+\end_layout
+
 \begin_layout Standard
-描述用户如何使用该系统
+组织在决定分发文档时，将待分发的文档内容与接收该文档的成员 ID 一同提交至本系统，由本系统产生新的可溯源文档，并将该可溯源文档发给对应的用户。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+文档发布流程图
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+文档溯源
+\end_layout
+
+\begin_layout Standard
+组织在发现文档泄露时，将被泄露文档提交至本系统，由本系统分析得到成员 ID，从而确定泄露文档的成员，对其进行责任追究。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+文档溯源流程图
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
