@@ -118,7 +118,11 @@
 \begin_body
 
 \begin_layout Title
-USTC-FontCode 作品报告
+基于深度学习的字体编码文档信息隐写系统
+\end_layout
+
+\begin_layout Title
+作品报告
 \end_layout
 
 \begin_layout Standard
@@ -187,7 +191,7 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Abstract
-针对文档溯源问题，本作品提出中文文档溯源的关键技术，并实现了系统原型。 系统实现基于屏摄文档，但可以扩展到其他形式的文档，具有普遍应用的潜力。
+针对文档溯源问题，本作品提出为中文文档加水印的关键技术，并实现了系统原型。 系统实现基于屏摄文档，但可以扩展到其他形式的文档，具有普遍应用的潜力。
 \end_layout
 
 \begin_layout Part
@@ -202,35 +206,86 @@ LatexCommand tableofcontents
 研究背景
 \end_layout
 
-\begin_layout Standard
-在政府及企业部门中，文档的保密性始终是一个重要的问题，机密文档的泄露将威胁企业及国家的安全，带来极大的风险。
-\end_layout
-
-\begin_layout Standard
-从源头避免文档的泄露，对于重要文件的打印，可以采用限制打印、复印次数，或指定专人负责的措施进行保密，打印文档时需要经过批准，审批，登记等步骤，并定期对纸质文档进
-行销毁或归档处理。对于重要的电子文档往往采用访问控制、身份认证等手段进行保护。尽管有这些保密措施，但电子文档的打印往往难以进行限制，文档在被打印之后就很难对其进
-行控制，信息泄露的风险加大。当文档泄露后，如果能定位文档泄露源头并对其进行管控、跟踪和追责，就可以及时避免更大的损失。因此，对文档进行可溯源的发布有着迫切的需求
-与极大的价值。
-\end_layout
-
 \begin_layout Section
 相关工作
 \end_layout
 
 \begin_layout Standard
-已有的文档信息隐写工作
+\begin_inset CommandInset citation
+LatexCommand cite
+key "xiao2018fontcode"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-引用示例
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zhu2018hidden"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
 特色描述
 \end_layout
 
+\begin_layout Subsection
+系统特色
+\end_layout
+
+\begin_layout Standard
+本系统允许用户提供原始文本信息及需要隐写的信息，自动生成隐写了该信息的文档。将该文档以打印、扫描、拍照方式发布后，可由文档接收者方便地从中提取被隐写的信息，从而
+进行安全、多样化的信息传递，具有应用在文档溯源、商业宣传、活动宣传等多种场景的潜力。
+\end_layout
+
+\begin_layout Subsection
+核心算法特色
+\end_layout
+
+\begin_layout Standard
+本系统的核心算法基于具有较强模式识别能力的深度神经网络，具有较高的鲁棒性和可扩展性。
+\end_layout
+
 \begin_layout Section
 应用前景分析
+\end_layout
+
+\begin_layout Subsection
+文档溯源
+\end_layout
+
+\begin_layout Standard
+在政府及企业部门中，文档的保密性始终是一个重要的问题，机密文档的泄露将威胁企业及国家的安全，带来极大的风险。
+\end_layout
+
+\begin_layout Standard
+首先要从源头避免文档的泄露，对于重要文件的打印，可以采用限制打印、复印次数，或指定专人负责，以进行保密，打印文档时需要经过批准，审批，登记等步骤，并定期对纸质文
+档进行销毁或归档处理。对于重要的电子文档往往采用访问控制、身份认证等手段进行保护。
+\end_layout
+
+\begin_layout Standard
+尽管有这些保密措施，但在用户获得文档的副本后，其去向就难以控制，信息泄露的风险加大。当文档泄露后，如果能定位文档泄露源头并对其进行管控、跟踪和追责，就可以及时避
+免更大的损失。因此，对文档进行可溯源的发布有着迫切的需求与极大的价值。
+\end_layout
+
+\begin_layout Standard
+要使文档可溯源，就要向其中加入水印。针对文本文档的抗打印扫描的数字文本水印技术能够将打印负责人的身份信息作为水印嵌入到将打印的纸质文件中，在文件泄露被捕获后通过
+提取水印信息即可对纸质文件泄密源头进行管控追踪。因此，研究此项技术有着迫切的需求与极大的价值。
+\end_layout
+
+\begin_layout Subsection
+多样化的宣传方式
+\end_layout
+
+\begin_layout Subsection
+？？？？
 \end_layout
 
 \begin_layout Part
@@ -250,73 +305,11 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Subsection
-威胁建模
-\end_layout
-
-\begin_layout Standard
-对文档溯源问题做如下定义：组织 A（如政府、企业部门）向成员 B、C 提供了一份保密的文档，一段时间后，该文档出现在了互联网或非授权人员手中。现在组织
- A 希望确定该文档是被哪位成员泄露。
-\end_layout
-
-\begin_layout Standard
-做如下假定：
-\end_layout
-
-\begin_layout Enumerate
-组织 A 对文档保密措施完善，文档不可能由组织 A 泄露；
-\end_layout
-
-\begin_layout Enumerate
-该文档为打印版本，或难以修改的电子版本如扫描 PDF 文件、图片集。
-\end_layout
-
-\begin_layout Standard
-可能出现的文档泄露为 A 或 B 之一为直接责任人，将文档以拍照、扫描、复印等方式传递给本没有权限访问该文档的人。
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Float figure
-placement h
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-威胁模型示意图
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
 使用流程
 \end_layout
 
 \begin_layout Subsubsection
 文档发布
-\end_layout
-
-\begin_layout Standard
-组织在决定分发文档时，将待分发的文档内容与接收该文档的成员 ID 一同提交至本系统，由本系统产生新的可溯源文档，并将该可溯源文档发给对应的用户。
 \end_layout
 
 \begin_layout Standard
@@ -338,26 +331,17 @@ status open
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
 \end_layout
 
 \begin_layout Subsubsection
-文档溯源
-\end_layout
-
-\begin_layout Standard
-组织在发现文档泄露时，将被泄露文档提交至本系统，由本系统分析得到成员 ID，从而确定泄露文档的成员，对其进行责任追究。
+信息提取
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
-placement h
 wide false
 sideways false
 status open
@@ -366,15 +350,11 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-文档溯源流程图
+文档提取流程图
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -389,22 +369,6 @@ status open
 
 \begin_layout Standard
 系统采用服务端-客户端模型。
-\end_layout
-
-\begin_layout Paragraph
-服务端
-\end_layout
-
-\begin_layout Standard
-提供文档生成和源头追溯的核心功能。
-\end_layout
-
-\begin_layout Paragraph
-客户端
-\end_layout
-
-\begin_layout Standard
-向用户提供方便地与系统进行交互的接口，可以以多种形式实现，包括 Web 页面、微信小程序、手机 App 等。
 \end_layout
 
 \begin_layout Standard
@@ -426,13 +390,25 @@ status open
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
+\end_layout
+
+\begin_layout Paragraph
+服务端
+\end_layout
+
+\begin_layout Standard
+提供文档生成和信息恢复的核心功能。
+\end_layout
+
+\begin_layout Paragraph
+客户端
+\end_layout
+
+\begin_layout Standard
+向用户提供方便地与系统进行交互的接口，可以以多种形式实现，包括 Web 页面、微信小程序、手机 App 等。
 \end_layout
 
 \begin_layout Section
@@ -452,34 +428,7 @@ status open
 \end_layout
 
 \begin_layout Subsection
-信息嵌入算法
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float algorithm
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-信息嵌入算法
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
+文档生成算法
 \end_layout
 
 \begin_layout Subsection
@@ -499,23 +448,24 @@ status open
 \end_layout
 
 \begin_layout Section
-功能流程
+功能指标
 \end_layout
 
 \begin_layout Standard
-讲述系统内各组件是如何工作的（不同于“关键技术”一节）
+评估文档信息隐写系统，主要从两个角度进行。
 \end_layout
 
-\begin_layout Subsection
-文档生成
+\begin_layout Paragraph
+文档格式的多样性
 \end_layout
 
-\begin_layout Subsection
-文档溯源
+\begin_layout Standard
+不论是将文档隐写技术应用在政府、企业部门，还是应用在商业宣传、海报设计中，都具有对文档形式的多样化的需求，因为政府、企业部门的文档往往具有一定的格式要求，商业宣
+传、海报设计则要求作品美观大方。从这个角度上，文档隐写系统的最终产品应该能够支持多样化的文档格式。
 \end_layout
 
-\begin_layout Section
-功能指标
+\begin_layout Paragraph
+信息提取的准确性
 \end_layout
 
 \begin_layout Part
@@ -583,6 +533,63 @@ LatexCommand bibtex
 btprint "btPrintAll"
 bibfiles "bib"
 options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+威胁建模 TODO：如果不按文档溯源来写，就不需要这一节了
+\end_layout
+
+\begin_layout Standard
+对文档溯源问题做如下定义：组织 A（如政府、企业部门）向成员 B、C 提供了一份保密的文档，一段时间后，该文档出现在了互联网或非授权人员手中。现在组织
+ A 希望确定该文档是被哪位成员泄露。
+\end_layout
+
+\begin_layout Standard
+做如下假定：
+\end_layout
+
+\begin_layout Enumerate
+组织 A 对文档保密措施完善，文档不可能由组织 A 泄露；
+\end_layout
+
+\begin_layout Enumerate
+该文档为打印版本，或难以修改的电子版本如扫描 PDF 文件、图片集。
+\end_layout
+
+\begin_layout Standard
+可能出现的文档泄露为 A 或 B 之一为直接责任人，将文档以拍照、扫描、复印等方式传递给本没有权限访问该文档的人。
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+威胁模型示意图
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
