@@ -187,12 +187,19 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Abstract
-数据溯源的重要性，文档溯源的重要性。
+文档隐写技术的重要性。
 \end_layout
 
 \begin_layout Abstract
 针对文档溯源问题，本作品提出在中文文档中进行高精度信息隐写关键技术，并实现了一个原型系统来演示其效果。演示系统基于屏摄文档，但可以扩展到其他形式的文档，具有普遍
 应用的潜力。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Part
@@ -275,11 +282,12 @@ literal "false"
 \end_layout
 
 \begin_layout Subsection
-多样化的宣传方式
+艺术宣传
 \end_layout
 
-\begin_layout Subsection
-？？？？
+\begin_layout Standard
+在商业宣传和海报制作中，设计者往往会在其作品上添加二维码来方便用户获取详细信息，但是二维码形态相对固定，对作品的整体效果有一定的影响，因此在实际使用时人们往往会
+为其加上多样的形态进行美化。如果能够在艺术宣传作品的文字中直接嵌入网站链接等信息，就能够免去二维码，进一步减小对设计者的约束。
 \end_layout
 
 \begin_layout Part
@@ -292,6 +300,10 @@ literal "false"
 
 \begin_layout Section
 系统设计
+\end_layout
+
+\begin_layout Standard
+在核心算法的基础上，我们设计和实现了一个简单的原型系统用以展示我们的信息隐写技术。
 \end_layout
 
 \begin_layout Subsection
@@ -310,6 +322,14 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/doc-pub-steps.png
+	width 14cm
+
+\end_inset
+
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -337,6 +357,14 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/doc-read.png
+	width 14cm
+
+\end_inset
+
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -369,6 +397,14 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/sys-arch.png
+	width 10cm
+
+\end_inset
+
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -390,7 +426,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-提供文档生成和信息恢复的核心功能。
+提供文档生成和信息提取的核心功能。
 \end_layout
 
 \begin_layout Paragraph
@@ -555,63 +591,6 @@ LatexCommand bibtex
 btprint "btPrintAll"
 bibfiles "bib"
 options "plain"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-威胁建模 TODO：如果不按文档溯源来写，就不需要这一节了
-\end_layout
-
-\begin_layout Standard
-对文档溯源问题做如下定义：组织 A（如政府、企业部门）向成员 B、C 提供了一份保密的文档，一段时间后，该文档出现在了互联网或非授权人员手中。现在组织
- A 希望确定该文档是被哪位成员泄露。
-\end_layout
-
-\begin_layout Standard
-做如下假定：
-\end_layout
-
-\begin_layout Enumerate
-组织 A 对文档保密措施完善，文档不可能由组织 A 泄露；
-\end_layout
-
-\begin_layout Enumerate
-该文档为打印版本，或难以修改的电子版本如扫描 PDF 文件、图片集。
-\end_layout
-
-\begin_layout Standard
-可能出现的文档泄露为 A 或 B 之一为直接责任人，将文档以拍照、扫描、复印等方式传递给本没有权限访问该文档的人。
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Float figure
-placement h
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-威胁模型示意图
-\end_layout
-
-\end_inset
-
-
-\end_layout
 
 \end_inset
 
