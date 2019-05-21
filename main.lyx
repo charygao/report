@@ -118,7 +118,7 @@
 \begin_body
 
 \begin_layout Title
-基于深度学习的字体编码文档信息隐写系统
+基于深度学习的字体编码文档信息隐写技术
 \end_layout
 
 \begin_layout Title
@@ -191,7 +191,8 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Abstract
-针对文档溯源问题，本作品提出为中文文档加水印的关键技术，并实现了系统原型。 系统实现基于屏摄文档，但可以扩展到其他形式的文档，具有普遍应用的潜力。
+针对文档溯源问题，本作品提出在中文文档中进行高精度信息隐写关键技术，并实现了一个原型系统来演示其效果。演示系统基于屏摄文档，但可以扩展到其他形式的文档，具有普遍
+应用的潜力。
 \end_layout
 
 \begin_layout Part
@@ -236,21 +237,14 @@ literal "false"
 特色描述
 \end_layout
 
-\begin_layout Subsection
-系统特色
+\begin_layout Standard
+本作品的核心想法是使用肉眼难以分辨的字体作为载体在文档中进行信息隐写，考虑到字体识别总会存在一定的误差，我们根据测试得到的误码率选择了合适的纠错编码方案，将待编
+码的文档信息转化为文档的字体序列，从而达到信息隐写的目的。
 \end_layout
 
 \begin_layout Standard
-本系统允许用户提供原始文本信息及需要隐写的信息，自动生成隐写了该信息的文档。将该文档以打印、扫描、拍照方式发布后，可由文档接收者方便地从中提取被隐写的信息，从而
-进行安全、多样化的信息传递，具有应用在文档溯源、商业宣传、活动宣传等多种场景的潜力。
-\end_layout
-
-\begin_layout Subsection
-核心算法特色
-\end_layout
-
-\begin_layout Standard
-本系统的核心算法基于具有较强模式识别能力的深度神经网络，具有较高的鲁棒性和可扩展性。
+为了演示字体识别的准确性，我们设定了一个易于处理的文档布局方式，并基于该布局方式实现了自动文档识别和准确的文字分割。尽管如此，多样化文档格式、高精度文字切割等问
+题并不是本作品的重点。
 \end_layout
 
 \begin_layout Section
@@ -298,10 +292,6 @@ literal "false"
 
 \begin_layout Section
 系统设计
-\end_layout
-
-\begin_layout Standard
-本节首先明确威胁模型，从而对我们所实现的系统解决问题的范围进行界定，然后描述该系统的使用流程设计，最后描述该系统的架构设计。
 \end_layout
 
 \begin_layout Subsection
@@ -452,20 +442,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-评估文档信息隐写系统，主要从两个角度进行。
-\end_layout
-
-\begin_layout Paragraph
-文档格式的多样性
-\end_layout
-
-\begin_layout Standard
-不论是将文档隐写技术应用在政府、企业部门，还是应用在商业宣传、海报设计中，都具有对文档形式的多样化的需求，因为政府、企业部门的文档往往具有一定的格式要求，商业宣
-传、海报设计则要求作品美观大方。从这个角度上，文档隐写系统的最终产品应该能够支持多样化的文档格式。
-\end_layout
-
-\begin_layout Paragraph
-信息提取的准确性
+使用字体识别的准确率来评估本作品的效果。
 \end_layout
 
 \begin_layout Part
@@ -476,28 +453,73 @@ status open
 测试方案
 \end_layout
 
+\begin_layout Standard
+我们对本作品的核心功能——信息编码解码，及其周边功能——屏摄文档分割进行测试。
+\end_layout
+
 \begin_layout Subsection
 单元测试
 \end_layout
 
 \begin_layout Subsubsection
-图像分割
+字体识别
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:字体识别"
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Subsubsection
-文字识别
+\begin_layout Standard
+准备一组（超过 200 个）屏摄切割后的文字，识别其字体，计算准确率。
 \end_layout
 
 \begin_layout Subsubsection
 编码解码
 \end_layout
 
+\begin_layout Standard
+使用随机生成的数据（超过 200 组）进行编码，按照
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:字体识别"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+中得到的准确率模拟比特翻转，对模拟比特翻转得到的数据进行解码，计算准确率。
+\end_layout
+
+\begin_layout Subsubsection
+文档分割
+\end_layout
+
+\begin_layout Standard
+准备一组（超过 20 张）屏摄文档的照片，用我们的文档分割算法进行分割，计算分割的准确率。
+\end_layout
+
 \begin_layout Subsection
 系统测试
 \end_layout
 
+\begin_layout Standard
+模拟数次完整的使用流程，计算文档隐写后提取数据的准确率。
+\end_layout
+
 \begin_layout Section
 测试环境
+\end_layout
+
+\begin_layout Subsection
+硬件环境
+\end_layout
+
+\begin_layout Subsection
+自然环境
 \end_layout
 
 \begin_layout Section
@@ -517,7 +539,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-本系统以文档溯源为目的，实现了以文档中的文字为单位的信息嵌入的关键技术，并在此基础上搭建了一套展示其应用潜力的系统原型。
+本作品提出了在中文文档中进行高精度信息隐写关键技术，并实现了一个原型系统来演示其效果。演示系统基于屏摄文档，但可以扩展到其他形式的文档，具有普遍应用的潜力。
 \end_layout
 
 \begin_layout Standard
