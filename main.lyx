@@ -37,8 +37,8 @@
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman "default" "default"
-\font_sans "default" "default"
+\font_roman "default" "宋体"
+\font_sans "default" "宋体"
 \font_typewriter "default" "default"
 \font_math "auto" "auto"
 \font_default_family default
@@ -54,8 +54,9 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement h
 \paperfontsize default
-\spacing single
+\spacing onehalf
 \use_hyperref true
 \pdf_bookmarks true
 \pdf_bookmarksnumbered false
@@ -115,6 +116,10 @@
 \end_header
 
 \begin_body
+
+\begin_layout Title
+USTC-FontCode 作品报告
+\end_layout
 
 \begin_layout Standard
 \begin_inset Newpage newpage
@@ -194,15 +199,18 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Section
-背景分析
+研究背景
 \end_layout
 
 \begin_layout Standard
-泄密文档溯源的重要性
+在政府及企业部门中，文档的保密性始终是一个重要的问题，机密文档的泄露将威胁企业及国家的安全，带来极大的风险。
 \end_layout
 
 \begin_layout Standard
-文档溯源问题可以转换为文档信息隐写问题
+从源头避免文档的泄露，对于重要文件的打印，可以采用限制打印、复印次数，或指定专人负责的措施进行保密，打印文档时需要经过批准，审批，登记等步骤，并定期对纸质文档进
+行销毁或归档处理。对于重要的电子文档往往采用访问控制、身份认证等手段进行保护。尽管有这些保密措施，但电子文档的打印往往难以进行限制，文档在被打印之后就很难对其进
+行控制，信息泄露的风险加大。当文档泄露后，如果能定位文档泄露源头并对其进行管控、跟踪和追责，就可以及时避免更大的损失。因此，对文档进行可溯源的发布有着迫切的需求
+与极大的价值。
 \end_layout
 
 \begin_layout Section
@@ -211,6 +219,10 @@ LatexCommand tableofcontents
 
 \begin_layout Standard
 已有的文档信息隐写工作
+\end_layout
+
+\begin_layout Standard
+引用示例
 \end_layout
 
 \begin_layout Section
@@ -268,19 +280,9 @@ LatexCommand tableofcontents
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename figures/threat-model.dot
-
-\end_inset
-
 
 \end_layout
 
@@ -306,7 +308,7 @@ status open
 \end_layout
 
 \begin_layout Subsection
-使用流程设计
+使用流程
 \end_layout
 
 \begin_layout Subsubsection
@@ -319,13 +321,10 @@ status open
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -358,13 +357,10 @@ status open
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -388,51 +384,118 @@ status open
 \end_layout
 
 \begin_layout Subsection
-系统架构设计
+系统架构
 \end_layout
 
 \begin_layout Standard
-描述整个软件系统的架构
+系统采用服务端-客户端模型。
+\end_layout
+
+\begin_layout Paragraph
+服务端
+\end_layout
+
+\begin_layout Standard
+提供文档生成和源头追溯的核心功能。
+\end_layout
+
+\begin_layout Paragraph
+客户端
+\end_layout
+
+\begin_layout Standard
+向用户提供方便地与系统进行交互的接口，可以以多种形式实现，包括 Web 页面、微信小程序、手机 App 等。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+系统架构图
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
-系统实现
+功能模块
 \end_layout
 
 \begin_layout Subsection
-关键技术
+文档生成模块
 \end_layout
 
 \begin_layout Subsection
-文档信息隐写
-\end_layout
-
-\begin_layout Subsection
-文档信息恢复
+信息恢复模块
 \end_layout
 
 \begin_layout Section
-服务端实现
+技术实现
 \end_layout
 
 \begin_layout Subsection
-模型训练
+信息嵌入算法
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+信息嵌入算法
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
-服务部署
-\end_layout
-
-\begin_layout Section
-客户端实现
+文档切分算法
 \end_layout
 
 \begin_layout Subsection
-图像上传
+图像矫正算法
 \end_layout
 
 \begin_layout Subsection
-结果回显
+字符切分算法
+\end_layout
+
+\begin_layout Subsection
+网络模型训练
 \end_layout
 
 \begin_layout Section
@@ -505,6 +568,25 @@ status open
 
 \begin_layout Standard
 本系统以文档溯源为目的，实现了以文档中的文字为单位的信息嵌入的关键技术，并在此基础上搭建了一套展示其应用潜力的系统原型。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintAll"
+bibfiles "bib"
+options "plain"
+
+\end_inset
+
+
 \end_layout
 
 \end_body
