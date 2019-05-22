@@ -315,6 +315,10 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
+当用户需要发布一份带隐写信息的文档时，首先将文档原文和待隐写信息提交至本系统，由本系统生成隐写后的文档，然后用户获取隐写后的文档，进行后续的处理和使用。
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 placement h
 wide false
@@ -348,6 +352,10 @@ status open
 
 \begin_layout Subsubsection
 信息提取
+\end_layout
+
+\begin_layout Standard
+当用户需要从带有隐写信息的文档中恢复信息时，首先对文档进行拍照或扫描以得到电子版本，然后将该电子版本提交至系统，系统分析出隐写的内容后反馈呈现给用户。
 \end_layout
 
 \begin_layout Standard
@@ -386,7 +394,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-系统采用服务端-客户端模型。
+我们的原型系统使用服务端-客户端架构。如下图所示：
 \end_layout
 
 \begin_layout Standard
@@ -426,7 +434,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-提供文档生成和信息提取的核心功能。
+信息隐写和提取的核心算法部署在服务端，此外，服务端含有图片文档切割、矫正、字符切分算法以及与客户端通信的功能。
 \end_layout
 
 \begin_layout Paragraph
@@ -434,7 +442,8 @@ status open
 \end_layout
 
 \begin_layout Standard
-向用户提供方便地与系统进行交互的接口，可以以多种形式实现，包括 Web 页面、微信小程序、手机 App 等。
+向用户提供方便地与系统进行交互的接口，用户通过客户端获取文档、从文档中读取隐写信息。客户端可以以多种形式实现，包括 Web 页面、微信小程序、手机
+ App 等，我们的演示系统中以微信小程序的形式提供客户端。
 \end_layout
 
 \begin_layout Section
@@ -554,8 +563,16 @@ noprefix "false"
 硬件环境
 \end_layout
 
+\begin_layout Standard
+TODO
+\end_layout
+
 \begin_layout Subsection
 自然环境
+\end_layout
+
+\begin_layout Standard
+TODO
 \end_layout
 
 \begin_layout Section
