@@ -54,7 +54,7 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
-\float_placement h
+\float_placement H
 \paperfontsize default
 \spacing onehalf
 \use_hyperref true
@@ -320,7 +320,7 @@ literal "false"
 
 \begin_layout Standard
 \begin_inset Float figure
-placement h
+placement H
 wide false
 sideways false
 status open
@@ -360,6 +360,7 @@ status open
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -376,7 +377,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-文档提取流程图
+信息提取流程图
 \end_layout
 
 \end_inset
@@ -399,7 +400,7 @@ status open
 
 \begin_layout Standard
 \begin_inset Float figure
-placement h
+placement H
 wide false
 sideways false
 status open
