@@ -768,283 +768,12 @@ TODO: 放一个例子，原始文档、隐写信息 -> 生成的文档图片 -> 
 
 \begin_layout Standard
 考虑到微信小程序已具备各手机平台适应性，我们仅选用MI 8、Huawei mate20、360、vivoX7作为移动端测试平台，测试其在微信小程序内打开系统相机
-、上传图片、裁剪图片和与服务器使用https协议通信的可能性。测试结果如下
+、上传图片、裁剪图片和与服务器使用https协议通信的可能性。
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float table
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="5">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-MI 8
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Huawei mate20
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-360
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-vivoX7
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-打开系统相册
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-√
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-√
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-√
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-√
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-上传图片
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-√
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-√
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-√
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-√
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-裁剪图片
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-√
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-√
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-√
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-√
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-https通信
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-√
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-√
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-√
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-√
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-移动端测试
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
+不同手机自带的摄像头在性能方面也有不同，如像素值、对焦能力等。因此我们在采集数据时，混合了四款手机拍照得到的照片进行测试训练。增加神经网络对不同手机拍摄出的不同
+清晰度的图片的识别率。
 \end_layout
 
 \begin_layout Paragraph
@@ -1053,7 +782,7 @@ https通信
 
 \begin_layout Standard
 考虑不同显示屏的分辨率、色差等会对图片产生影响，我们在HP Pavilion 15-au147tx、mac air13.3－inch (1440
- x 900)、mac pro13.3-inch (2560 x 1600)均进行过数据集测试集采样，并在这些显示屏上拍取最终编码后的图片进行解码测试。
+ x 900)、mac pro13.3-inch (2560 x 1600)均进行了采样，并在这些显示屏上拍取最终编码后的图片进行解码测试。
 \end_layout
 
 \begin_layout Paragraph
@@ -1061,8 +790,8 @@ https通信
 \end_layout
 
 \begin_layout Standard
-服务器端配置为Ubuntu 16.04 64位 1核 内存2G。服务使用nginx+gunicorn+flask进行部署环境。为经测试，该环境足够为小量用户提供可
-靠服务
+服务器端配置为Ubuntu 16.04 64位、1核、内存2G。服务使用nginx+gunicorn+flask进行部署环境。经测试，该环境足够为小量用户提供可靠
+服务。
 \end_layout
 
 \begin_layout Subsection
@@ -1074,7 +803,7 @@ https通信
 \end_layout
 
 \begin_layout Standard
-光照条件不同对拍照背景颜色有很大影响。在训练网络过程中我们添加了不同光照条件下拍摄的数据集，增强了网络对背景颜色的能力。
+光照条件不同对拍照背景颜色有很大影响。在训练网络过程中我们添加了不同光照条件下拍摄的测试集，测试网络对背景颜色的能力。
 \end_layout
 
 \begin_layout Paragraph
@@ -1082,8 +811,24 @@ https通信
 \end_layout
 
 \begin_layout Standard
-由于距离上的差别，拍照所得到的图像在清晰度、摩尔纹等方面有很大的不同。为了使我们的字体识别网络具有处理摩尔纹和清晰度的能力，我们在拍照时随机选取拍照距离。需要注
-意的是，选取的距离不应过大，使得图片中文字无法识别。也不应过小，使得对整张图片截取不完全，从而无法解码。
+由于距离上的差别，拍照所得到的图像在清晰度、摩尔纹等方面有很大的不同。为了测试我们的字体识别网络是否具有处理摩尔纹和清晰度的能力，我们在拍照时随机选取拍照距离。
+需要注意的是，选取的距离不应过大，使得图片中文字无法识别。也不应过小，使得对整张图片截取不完全，从而无法解码。
+\end_layout
+
+\begin_layout Paragraph*
+旋转倾斜角度
+\end_layout
+
+\begin_layout Standard
+为模拟现实情况下拍照环境，我们在拍照时将手机随机进行了小幅度旋转倾斜，以此测试文档分割前图片畸变矫正算法的鲁棒性。
+\end_layout
+
+\begin_layout Paragraph
+抖动
+\end_layout
+
+\begin_layout Standard
+测试数据中包含手持拍摄和三脚架固定拍摄数据，以检测网络对模糊图像的识别率。需要注意的是，抖动程度不应太大导致图片文字模糊不清。
 \end_layout
 
 \begin_layout Section
