@@ -1255,10 +1255,17 @@ status open
 
 \begin_layout Plain Layout
 \align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename figures/system-test/哔....png
 	lyxscale 50
-	width 5cm
+	width 30line%
 
 \end_inset
 
@@ -1266,7 +1273,6 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\align center
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -1285,6 +1291,11 @@ status open
 \end_inset
 
 
+\begin_inset space \hspace*{}
+\length 2cm
+\end_inset
+
+
 \begin_inset Float figure
 wide false
 sideways false
@@ -1293,43 +1304,9 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/system-test/1.png
-
-\end_inset
-
-
-\begin_inset space \hspace*{}
-\length 1cm
-\end_inset
-
-
-\begin_inset Graphics
-	filename figures/system-test/2.png
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset VSpace 1cm
-\end_inset
-
-
-\begin_inset Graphics
-	filename figures/system-test/3.png
-
-\end_inset
-
-
-\begin_inset space \hspace*{}
-\length 1cm
-\end_inset
-
-
-\begin_inset Graphics
-	filename figures/system-test/4.png
+	filename figures/system-test/cut
+	lyxscale 50
+	width 25line%
 
 \end_inset
 
@@ -1341,6 +1318,28 @@ status open
 
 \begin_layout Plain Layout
 切割后的图像
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+服务器端处理
 \end_layout
 
 \end_inset
