@@ -246,6 +246,13 @@ literal "false"
 
 \begin_layout Section
 特色描述
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:特色描述"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1035,6 +1042,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename figures/before-fix.jpg
+	lyxscale 10
 	height 6cm
 
 \end_inset
@@ -1047,6 +1055,7 @@ status open
 
 \begin_inset Graphics
 	filename figures/after-fix.jpg
+	lyxscale 30
 	height 6cm
 
 \end_inset
@@ -1076,47 +1085,284 @@ status open
 \end_layout
 
 \begin_layout Standard
-模拟数次完整的使用流程，计算文档隐写后提取数据的准确率。
+我们模拟了数次完整的使用流程。先使用给定原始文本和待隐写信息，使用文档生成模块产生隐写后的文档。再对隐写后的文档使用客户端拍照上传，服务器端进行定位、畸变矫正、
+切字处理后，将字按序输入网络，将输出的比特穿进行BCH解码，就能得到隐写信息。下面展示某一次的详细使用流程：
 \end_layout
 
 \begin_layout Standard
 TODO: 放一个例子，原始文档、隐写信息 -> 生成的文档图片 -> 拍照后的图片 -> 切割矫正后的图片 -> 恢复出的信息
 \end_layout
 
-\begin_layout Paragraph
-原始文本
-\end_layout
-
-\begin_layout Paragraph
-待隐写信息
-\end_layout
-
-\begin_layout Paragraph
-生成的文档
+\begin_layout Subsubsection
+文档生成模块检测
 \end_layout
 
 \begin_layout Standard
-图
-\end_layout
+我们采用
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:特色描述"
+plural "false"
+caps "false"
+noprefix "false"
 
-\begin_layout Paragraph
-拍照后的文档
+\end_inset
+
+中的一段话作为原始文本，'ciscn!'作为待隐写信息。将原始文本和给定信息输入文档生成模块，得到的文档如下图所示：
 \end_layout
 
 \begin_layout Standard
-图
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/system-test/geneate-img.png
+	width 14cm
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Paragraph
-切割矫正后的图片
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+含有隐写信息的文档
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+信息恢复模块检测
 \end_layout
 
 \begin_layout Standard
-图
+打开微信搜索fontDecode小程序，点击中间按钮，你可以选择上传相册中的照片或者临时拍照上传。
 \end_layout
 
-\begin_layout Paragraph
-恢复到的信息
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/system-test/wx-index.jpg
+	lyxscale 10
+	height 10cm
+
+\end_inset
+
+
+\begin_inset space \hspace*{}
+\length 2cm
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/system-test/cut-image.jpg
+	lyxscale 10
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+fontDecode小程序主页 与 裁减页
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这里我们选择演示拍照上传。打开系统相机后，拍摄屏幕上含有隐写信息的文档（模拟现实拍照场景）。之后，旋转缩放并切割拍到的照片。点击下方按钮将处理后的图片上传至服务
+器。
+\end_layout
+
+\begin_layout Standard
+服务器收到上传图片后，先进行定位、畸变矫正、切割。将切割后的图片规范到224*224并进行归一化处理，依次输入进网络。将网络输出的比特串进行BCH解码，即能得到
+图片中的隐藏信息。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/system-test/哔....png
+	lyxscale 50
+	width 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+服务器畸变矫正后的图像
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/system-test/1.png
+
+\end_inset
+
+
+\begin_inset space \hspace*{}
+\length 1cm
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/system-test/2.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/system-test/3.png
+
+\end_inset
+
+
+\begin_inset space \hspace*{}
+\length 1cm
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/system-test/4.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+切割后的图像
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+之后服务器会将解码得到的信息发回给客户端，用户成功获得隐藏信息。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/system-test/decode-success.jpg
+	lyxscale 20
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+解码成功截图
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
