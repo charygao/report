@@ -458,8 +458,90 @@ status open
 文档生成模块
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/generator.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+文档生成流程
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+用户选择需要嵌入的信息(url)和带嵌入的文档内容, 模块对信息(url)进行01编码, 将得到的01bit串进行BCH纠错码编码得到最终的bit串,
+ 文档生成器通过bit串中的0 和1 分别选择两种字体, 按照顺序来生成符合内容的文档.
+\end_layout
+
 \begin_layout Subsection
 信息恢复模块
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/decoder.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+信息恢复流程
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+模块接受输入的照片, 对照片进行畸变校正等预处理, 使得最后的照片能够字体排列整齐, 对矫正过后的图片按照设定的文档规格尽心切分, 得到一张张单个字体图片,
+ 将这些单个字体文件按照顺序输入神经网络分类器中进行分类, 按照类别得到01比特串, 输入BCH解码器解码后, 恢复到原有信息(url).
 \end_layout
 
 \begin_layout Section
@@ -470,20 +552,276 @@ status open
 文档生成算法
 \end_layout
 
-\begin_layout Subsection
-文档切分算法
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/文档生成算法.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+文档生成算法流程
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+本算法接受01比特串, 并按照bit串选择字体来生成文档
 \end_layout
 
 \begin_layout Subsection
 图像矫正算法
 \end_layout
 
-\begin_layout Subsection
-字符切分算法
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/畸变校正算法.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+图片矫正算法
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+图片灰度化 阈值二值化 检测轮廓 寻找轮廓的包围矩阵，并且获取角度 根据角度进行旋转矫正 对旋转后的图像进行轮廓提取 对轮廓内的图像区域抠出来，成为一张独立图像
+\end_layout
+
+\begin_layout Standard
+本算法采用连通域识别的方法, 识别文档照片的边框, 并根据边框的位置进行几何矫正, 最后得到矫正后的图片
+\end_layout
+
+\begin_layout Standard
+连通域识别
+\end_layout
+
+\begin_layout Standard
+1）扫描图像，直到当前像素点B(x,y) == 1：
+\end_layout
+
+\begin_layout Standard
+a、将B(x,y)作为种子（像素位置），并赋予其一个label，然后将该种子相邻的所有前景像素都压入栈中；
+\end_layout
+
+\begin_layout Standard
+b、弹出栈顶像素，赋予其相同的label，然后再将与该栈顶像素相邻的所有前景像素都压入栈中；
+\end_layout
+
+\begin_layout Standard
+c、重复b步骤，直到栈为空；
+\end_layout
+
+\begin_layout Standard
+此时，便找到了图像B中的一个连通区域，该区域内的像素值被标记为label；
+\end_layout
+
+\begin_layout Standard
+（2）重复第（1）步，直到扫描结束；
+\end_layout
+
+\begin_layout Standard
+扫描结束后，就可以得到图像B中所有的连通区域；
+\end_layout
+
+\begin_layout Standard
+几何校正
+\end_layout
+
+\begin_layout Standard
+摄像机就相当于透视中心，摄像机和荧幕之间就是像点的集合，荧幕上展示的就是目标点集合； 中心点和某一像点的连线和荧幕的交点就是这个像点的目标点；像点(x,
+ y)和目标点(s, t)是一一对应的关系，我们可以使用一个[3x3]的矩阵A描述他们之间的映射关系：[s, t, 1]T = dot(A, [x,
+ y, 1]T) --- A矩阵乘 (x, y)的齐次坐标的转置就是(s, t)的齐次坐标的转置，每一个透视变换都对应着特定的变换矩阵A
 \end_layout
 
 \begin_layout Subsection
-网络模型训练
+BCH编解码算法
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/BCH编解码算法.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+BCH编解码算法
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+构建
+\end_layout
+
+\begin_layout Standard
+BCH 码使用有限域上的域论与多项式。为了检测错误可以构建一个检测多项式，这样接收端就可以检测是否有错误发生。
+\end_layout
+
+\begin_layout Standard
+要构建一个能够检测、校正两个错误的 BCH 码，我们要使用有限域 GF(16) 或者 Z2[x]／<x4 + x + 1>。如果 α 是 m1(x)
+ = x4 + x + 1 的一个根，那么 m1 就是 α 的极小多项式，这是因为
+\end_layout
+
+\begin_layout Standard
+m1(x) = (x - α)(x - α2)(x - α4)(x - α8)=x4 + x + 1。 如果要构建一个能够纠正一个错误的 BCH
+ 码，那么就使用 m1(x)，这个代码就是所有满足
+\end_layout
+
+\begin_layout Standard
+C(x) ≡ 0（mod m1(x)）且根为 α, α2, α4, α8 的多项式 C(x)。
+\end_layout
+
+\begin_layout Standard
+编码
+\end_layout
+
+\begin_layout Standard
+构建码字为
+\end_layout
+
+\begin_layout Standard
+(c14, c13, ..., c8) 这样多项式为
+\end_layout
+
+\begin_layout Standard
+c14+c13+...+c8 我们将它称为 CI。
+\end_layout
+
+\begin_layout Standard
+然后就要找出 CR 满足 CR=CI (mod m1,3(x))=c7+c6+...+c0
+\end_layout
+
+\begin_layout Standard
+这样就得到待发的码字 C(x) = CI+CR (mod m1,3(x)) = 0
+\end_layout
+
+\begin_layout Standard
+例如，如果我们要对 (1,1,0,0,1,1,0) 进行编码
+\end_layout
+
+\begin_layout Standard
+CI=x14+x13+x10+x9 然后用 m1,3(x) 除以（这里的除法是多项式除法）CI ，得到结果为 CR(x)，在Z2域中，我们可以算出
+ CR为
+\end_layout
+
+\begin_layout Standard
+x3+1 这样，待发的码字为
+\end_layout
+
+\begin_layout Standard
+(1,1,0,0,1,1,0, 0,0,0,0,1,0,0,1)
+\end_layout
+
+\begin_layout Standard
+解码
+\end_layout
+
+\begin_layout Standard
+BCH 的解码过程可以分为以下四步
+\end_layout
+
+\begin_layout Standard
+计算接收到的向量 R 的 2t 伴随矩阵 计算错误定位多项式 解多项式，得到错误位置 如果不是二进制 BCH 码，就计算错误位置的误差值 假设我们收到一个码字向
+量 r，即多项式 R(x)）。
+\end_layout
+
+\begin_layout Standard
+如果没有错误，那么 R(α)=R(α3)=0
+\end_layout
+
+\begin_layout Standard
+如果有一个错误，例如 r=c+ei，其中 ei 表示 R14 的第 i个基向量 于是
+\end_layout
+
+\begin_layout Standard
+S1=R(α)=C(α)+αi=αi S3=R(α3)=C(α3)+(α3)i =(αi)3=S13 这样就可以纠正错误。α 的指数显示的数据位变化可以帮助我们
+校正错误。
+\end_layout
+
+\begin_layout Standard
+如果有两个错误
+\end_layout
+
+\begin_layout Standard
+r=c+ei+ej 那么
+\end_layout
+
+\begin_layout Standard
+S1=R(α)=C(α)+αi+αj S3=R(α3)=C(α3)+(α3)i+(α3)j = (α3)i+(α3)j 这与 S13 不同，所以我们认为有两个错
+误。更进一步的代数方法可以帮助校正着两个错误。
+\end_layout
+
+\begin_layout Subsection
+网络模型训练算法
 \end_layout
 
 \begin_layout Section
