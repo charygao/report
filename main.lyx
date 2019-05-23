@@ -531,6 +531,7 @@ name "subsec:字体识别"
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Formula $M=\frac{P_{1}+P_{2}}{T_{1}+T_{2}}$
 \end_inset
 
@@ -568,7 +569,52 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-TODO: 放 4 个切割后的文字图片
+\align center
+\begin_inset Graphics
+	filename figures/1.png
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 1cm
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/2.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/3.png
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 1cm
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/4.png
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -621,14 +667,33 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-TODO: 放一张切割前的图和对应的切割矫正后的图
+\align center
+\begin_inset Graphics
+	filename figures/before-fix.jpg
+	height 6cm
+
+\end_inset
+
+
+\begin_inset space \hspace*{}
+\length 1cm
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/after-fix.jpg
+	height 6cm
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-分割前后图像示意
+分割前后图像示例
 \end_layout
 
 \end_inset
@@ -651,6 +716,42 @@ TODO: 放一张切割前的图和对应的切割矫正后的图
 
 \begin_layout Standard
 TODO: 放一个例子，原始文档、隐写信息 -> 生成的文档图片 -> 拍照后的图片 -> 切割矫正后的图片 -> 恢复出的信息
+\end_layout
+
+\begin_layout Paragraph
+原始文本
+\end_layout
+
+\begin_layout Paragraph
+待隐写信息
+\end_layout
+
+\begin_layout Paragraph
+生成的文档
+\end_layout
+
+\begin_layout Standard
+图
+\end_layout
+
+\begin_layout Paragraph
+拍照后的文档
+\end_layout
+
+\begin_layout Standard
+图
+\end_layout
+
+\begin_layout Paragraph
+切割矫正后的图片
+\end_layout
+
+\begin_layout Standard
+图
+\end_layout
+
+\begin_layout Paragraph
+恢复到的信息
 \end_layout
 
 \begin_layout Section
