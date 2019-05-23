@@ -874,7 +874,160 @@ S1=R(α)=C(α)+αi+αj S3=R(α3)=C(α3)+(α3)i+(α3)j = (α3)i+(α3)j 这与 S13
 \end_layout
 
 \begin_layout Subsection
-网络模型训练算法
+网络模型训练
+\end_layout
+
+\begin_layout Subsubsection
+网络结构
+\end_layout
+
+\begin_layout Subsubsection
+训练数据
+\end_layout
+
+\begin_layout Standard
+神经网络的训练需要足量的数据，否则会出现欠拟合（Underfitting）的问题。目前并没有符合本作品需求的中文字体数据集，因此本小组选择自己制造训练和测试用的
+数据。由于需要多种字体数据进行训练和测试，下面的步骤针对每种字体重复进行：
+\end_layout
+
+\begin_layout Paragraph
+生成文档
+\end_layout
+
+\begin_layout Standard
+首先需要批量化地生成“文档”。为了
+\series bold
+简化与关键技术关系不大的部分
+\series default
+，本小组使用了简单的规则生成“文档”来解决下述问题，以方便文档矫正和文字切割，针对更复杂的文档格式、布局的处理不在本次作品的研究范围内。
+\end_layout
+
+\begin_layout Enumerate
+对于任意指定的文档，从中分割出所有汉字并不容易，因此规定简单文档格式每一页的文字行数、列数固定，且不含非汉字字符，如标点、空格、英文字母等；
+\end_layout
+
+\begin_layout Enumerate
+文档在屏幕上显示时，边界有时不容易确定，因此在每页文档周边加一个黑色边框；
+\end_layout
+
+\begin_layout Enumerate
+文档从屏幕或纸张上被拍照后，其页面边界会有一些影响文档边界自动识别的因素，导致边界出现微小偏移，为了降低其对切割出的文字的影响，在文字与文字之间加入一定大小的空
+白。
+\end_layout
+
+\begin_layout Standard
+下图是一页文档的示例：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/before-fix.jpg
+	width 15cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+文档示例
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+屏幕拍照
+\end_layout
+
+\begin_layout Standard
+考虑到用户在拍照时，光照、拍照角度、显示文档的屏幕等因素都很难确定，在制作训练数据时体现出这样的多样性才能使训练出的网络模型具有较好的泛化能力，因此制作训练数据
+时我们做了以下的变化：
+\end_layout
+
+\begin_layout Enumerate
+从多个角度拍照；
+\end_layout
+
+\begin_layout Enumerate
+变化背景光照、屏幕亮度拍照；
+\end_layout
+
+\begin_layout Enumerate
+使用不同的屏幕进行拍照；
+\end_layout
+
+\begin_layout Enumerate
+从不同的距离拍照。
+\end_layout
+
+\begin_layout Paragraph
+文档矫正
+\end_layout
+
+\begin_layout Standard
+使用传统算法进行边界识别，然后做透视畸变矫正，得到照片中的文档区域，对于“生成文档”中所示图片，矫正后得到下图：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/after-fix.jpg
+	width 15cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+文档示例
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+文字切割
+\end_layout
+
+\begin_layout Standard
+在矫正后的图像上按照预定的行列数进行均等划分，得到一个一个字的图像。
 \end_layout
 
 \begin_layout Section
