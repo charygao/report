@@ -491,8 +491,10 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename figures/generator.png
+	width 15cm
 
 \end_inset
 
@@ -536,6 +538,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename figures/recognize-flow-graph.png
 	width 8cm
@@ -586,8 +589,10 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename figures/文档生成算法.png
+	width 15cm
 
 \end_inset
 
@@ -603,10 +608,6 @@ status open
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -627,11 +628,13 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename figures/畸变校正算法.png
+	width 15cm
 
 \end_inset
 
@@ -713,11 +716,13 @@ BCH编解码算法
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename figures/BCH编解码算法.png
+	width 14cm
 
 \end_inset
 
