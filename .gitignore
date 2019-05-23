@@ -8,3 +8,5 @@
 *.lyx#
 
 # End of https://www.gitignore.io/api/lyx
+
+.DS_Store
