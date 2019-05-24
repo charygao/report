@@ -234,6 +234,7 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Standard
+我们的工作基于
 \begin_inset CommandInset citation
 LatexCommand cite
 key "xiao2018fontcode"
@@ -241,10 +242,25 @@ literal "false"
 
 \end_inset
 
+：利用英文字体的细微差别在文档中进行信息隐藏。然而我们的工作显然难度更大，体现在以下三个方面。第一个方面，
+\begin_inset CommandInset citation
+LatexCommand cite
+key "xiao2018fontcode"
+literal "false"
 
+\end_inset
+
+是基于英文字母的字体差别进行的信息隐藏。英文字母只有26个，然而我们进行的中文字体隐写需要识别的常用字就有3000及以上。这对我们的神经网络识别能力提出了非常高
+的要求，在采集训练集时数据量也会大大增加。第二个方面，中文字体和英文在形状上有很大不同。考虑到中文字体有偏旁部首（整个字体不是连通的），分割取字也变得更有难度。
+第三个方面，我们是对对屏摄照片进行的识别。在屏摄过程中产生的失真、摩尔纹、噪点等都会大大影响神经网络模型的识别率。
+\end_layout
+
+\begin_layout Paragraph*
+支持拍照后的信息识别
 \end_layout
 
 \begin_layout Standard
+由于拍照会导致原本文档中的信息流失，大部分的隐写技术在拍照后都会变得不可靠甚至完全无法使用。
 \begin_inset CommandInset citation
 LatexCommand cite
 key "zhu2018hidden"
@@ -252,6 +268,23 @@ literal "false"
 
 \end_inset
 
+是一项针对拍照后提取图像中隐写信息的工作，这与我们拍照后识别字体具有很大的相似度。然而图像隐写与字体隐写还是有本质的差异。
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zhu2018hidden"
+literal "false"
+
+\end_inset
+
+的图像隐写可以将隐写信息置于整张图片中（大部分是一个规则的矩形），隐写面积更大，也更易识别隐写区域。我们的字体隐写识别别区域仅在字体本身，隐写面积很小，每个字体
+的识别区域也不同。
+\end_layout
+
+\begin_layout Paragraph
+编码解码
+\end_layout
+
+\begin_layout Standard
 
 \end_layout
 
