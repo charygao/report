@@ -236,6 +236,7 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Standard
+我们的工作基于Chang Xiao 2018
 \begin_inset CommandInset citation
 LatexCommand cite
 key "xiao2018fontcode"
@@ -243,10 +244,49 @@ literal "false"
 
 \end_inset
 
+：利用英文字体的细微差别在文档中进行信息隐藏。然而，我们的工作难度更大，体现在以下三个方面。第一个方面，Chang Xiao2018
+\begin_inset CommandInset citation
+LatexCommand cite
+key "xiao2018fontcode"
+literal "false"
 
+\end_inset
+
+是基于英文字母的字体差别进行的信息隐藏。英文字母只有26个，然而我们进行的中文字体隐写需要识别的常用字就有3000及以上。这对我们的神经网络识别能力提出了非常高
+的要求，在采集训练集时数据量也会大大增加。第二个方面，中文字体和英文在形状上有很大不同。考虑到中文字体有偏旁部首（整个字体不是连通的），分割取字也变得更有难度。
+第三个方面，我们是对屏幕上显示的文档拍照进行识别。在屏摄过程中产生的失真、摩尔纹、噪点等都会大大影响神经网络模型的识别率。
+\end_layout
+
+\begin_layout Paragraph
+编码字体的选择
 \end_layout
 
 \begin_layout Standard
+我们的字体编码工作需要选择字形相似且不易被人察觉出差异的字体。目前有很多种选择字体的方法。进来，众包技术
+\begin_inset CommandInset citation
+LatexCommand cite
+key "o2014exploratory"
+literal "false"
+
+\end_inset
+
+以及提取相似度
+\begin_inset CommandInset citation
+LatexCommand cite
+key "loviscach2010universe"
+literal "false"
+
+\end_inset
+
+经常被使用。考虑到我们的系统只需要验证方案的可行性。我们在之前的已有的技术上做了融合和裁减，只选择部分可行字体进行实现，并使用众包技术验证字体的不可区分性。
+\end_layout
+
+\begin_layout Paragraph*
+支持拍照后的字体识别
+\end_layout
+
+\begin_layout Standard
+由于拍照会导致原本文档中的信息流失，大部分的隐写技术在拍照后都会变得不可靠甚至完全无法使用。Jiren Zhu 2018
 \begin_inset CommandInset citation
 LatexCommand cite
 key "zhu2018hidden"
@@ -254,7 +294,108 @@ literal "false"
 
 \end_inset
 
+是一项针对拍照后提取图像中隐写信息的工作，这与我们拍照后识别字体具有很大的相似度。但是，图像隐写与字体隐写还是有本质的差异。图像隐写可以将隐写信息置于整张图片中
+（大部分是一个规则的矩形），隐写面积更大，也更易识别隐写区域。我们的字体隐写识别别区域仅在字体本身，隐写面积很小，每个字体的识别区域也不同。
+\end_layout
 
+\begin_layout Standard
+之前也有很多识别图片中字体的工作，如Carlos Avilés-Cruz 2015
+\begin_inset CommandInset citation
+LatexCommand cite
+key "aviles2005high"
+literal "false"
+
+\end_inset
+
+——使用静态方法提取字体特征进行识别。进来，神经网络与深度学习技术崛起兴盛，使用神经网络识别字体的技术越来越多，而且效果都非常好。Chen 2014
+\begin_inset CommandInset citation
+LatexCommand cite
+key "chen2014large"
+literal "false"
+
+\end_inset
+
+中就提出了一种规模可变的监督学习方法。随后Wang 2015
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wang2015deepfont"
+literal "false"
+
+\end_inset
+
+提出使用CNN识别字体的方案。我们的识别方法也运用了神经网络，并将CNN作为核心的一环。最终搭建的网络模型使用了一种效果非常好的图片分类模型 ——He
+ 2016
+\begin_inset CommandInset citation
+LatexCommand cite
+key "he2016deep"
+literal "false"
+
+\end_inset
+
+。我们调整了模型的部分细节和参数以适应于整个任务。
+\end_layout
+
+\begin_layout Paragraph
+在文档中隐写信息
+\end_layout
+
+\begin_layout Standard
+我们的工作与隐写技术相关。各种载体上（图像、光照、音频、视频）的隐写技术都被研究了多年。但是基于文档中文字的隐写更有挑战性，目前较为成熟的隐写方案也比较少。我们
+在这里列出几种现有的文档中隐写信息的方案。
+\end_layout
+
+\begin_layout Standard
+第一种方案是cover text generation CTG，wayner 1992 2009
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wayner1992mimic"
+literal "false"
+
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wayner2009disappearing"
+literal "false"
+
+\end_inset
+
+。这种方案生成一种语法和句法上非常自然的文档，在词句之中隐藏信息。这种方案的缺点也是非常明显的——它不能给定文档进行隐写。
+\end_layout
+
+\begin_layout Standard
+第二种方案是黄兴 2013
+\begin_inset CommandInset citation
+LatexCommand cite
+key "黄兴2013抗打印扫描的文本数字水印技术研究"
+literal "false"
+
+\end_inset
+
+，将字体边缘的像素翻转来进行编码。这种方案的缺点在于信息流失的可能性太大，特别是在屏摄后能识别出隐写信息的概率非常小。而且，如果采用这种方法，对所有格式文档适应
+的成本也非常高。
+\end_layout
+
+\begin_layout Standard
+第三种方案利用了文档格式上的特征，例如改变文字大小、颜色、下划线等 TODO
+\end_layout
+
+\begin_layout Paragraph
+隐写信息的编码解码
+\end_layout
+
+\begin_layout Standard
+由于编码所采用的字体差别非常小，在屏摄过后字体差别会更小，神经网会有一定概率识别出错。在这种情况下，使用纠错码是非常有必要的。我们使用了BCH编码
+\begin_inset CommandInset citation
+LatexCommand cite
+key "bose1960class"
+literal "false"
+
+\end_inset
+
+。该编码算法能允许48比特内出5比特错。只要我们的神经网络识别错误率在BCH编码允许内，就能完整的还原隐写的信息。最终，我们的网络确实达到了要求，能够还原出隐写
+信息。
 \end_layout
 
 \begin_layout Section
@@ -1332,7 +1473,8 @@ status open
 \align center
 \begin_inset Graphics
 	filename figures/before-fix.jpg
-	width 15cm
+	lyxscale 10
+	width 10cm
 
 \end_inset
 
@@ -1400,7 +1542,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename figures/after-fix.jpg
-	width 15cm
+	width 10cm
 
 \end_inset
 
