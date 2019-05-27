@@ -118,11 +118,7 @@
 \begin_body
 
 \begin_layout Title
-基于深度学习的字体编码文档水印技术
-\end_layout
-
-\begin_layout Title
-作品报告
+基于深度学习的字体编码文档水印技术作品报告
 \end_layout
 
 \begin_layout Standard
@@ -766,7 +762,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/文档生成算法.png
+	filename figures/doc-gen.png
 	width 15cm
 
 \end_inset
@@ -804,12 +800,12 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/畸变校正算法.png
+	filename figures/image-fix.png
 	width 15cm
 
 \end_inset
@@ -853,7 +849,7 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -902,7 +898,7 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1100,7 +1096,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/字符切分算法.png
+	filename figures/char-seg.png
 
 \end_inset
 
@@ -1155,12 +1151,12 @@ BCH编解码算法
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/BCH编解码算法.png
+	filename figures/bchcodec.png
 	width 14cm
 
 \end_inset
@@ -1635,8 +1631,11 @@ name "subsec:字体识别"
 \end_layout
 
 \begin_layout Standard
-\align center
-\begin_inset Formula $M=\frac{P_{1}+P_{2}}{T_{1}+T_{2}}$
+\begin_inset Formula 
+\begin{equation}
+M=\frac{P_{1}+P_{2}}{T_{1}+T_{2}}
+\end{equation}
+
 \end_inset
 
 
@@ -1870,10 +1869,6 @@ status open
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -1960,7 +1955,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/system-test/哔....png
+	filename figures/system-test/bi....png
 	lyxscale 50
 	width 30line%
 
@@ -2001,7 +1996,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/system-test/cut
+	filename figures/system-test/cut.png
 	lyxscale 50
 	width 25line%
 
