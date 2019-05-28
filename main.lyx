@@ -8,26 +8,14 @@
 \begin_preamble
 \usepackage{listings}
 \usepackage{xcolor}
-\lstset{ 
-    language=verilog,
-    backgroundcolor=\color{blue!1},
-    basicstyle=\small\ttfamily,
-    breaklines=true,
-    numbers=left,
-    numberstyle=\tiny\menlo,
-    showstringspaces=false,
-    keywordstyle=\color{blue!60},
-    commentstyle=\color{red!50!green!50!blue!50}, 
-    stringstyle=\color{purple!60},
-    frame=shadowbox,
-    rulesepcolor=\color{ red!20!green!20!blue!20},
-    escapeinside=``,
-    xleftmargin=1em,
-    xrightmargin=1em,
-    aboveskip=1em,
-    framexleftmargin=2em
-}
 \usepackage{hyperref}
+\ctexset{
+    part={
+        titleformat=\raggedright,
+        name={第,章},
+        number=\chinese{part}
+    }
+}
 \end_preamble
 \options UTF8
 \use_default_options true
@@ -116,8 +104,119 @@
 
 \begin_body
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Title
-基于深度学习的抗屏摄文档水印技术作品报告
+
+\series bold
+2019 年全国大学生信息安全竞赛
+\begin_inset Newline newline
+\end_inset
+
+作品报告
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 5cm*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size larger
+作品名称：
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size larger
+基于深度学习的抗屏摄文档水印技术
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size larger
+电子邮箱：
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size larger
+提交日期：
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -177,6 +276,29 @@ LatexCommand tableofcontents
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagestyle{plain}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{page}{1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Abstract
 （请简要说明创作本作品之动机、功能、特性、创新处、实用性）
 \end_layout
@@ -221,10 +343,6 @@ setcounter{section}{0}
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-（建议包括：背景分析、相关工作、特色描述及应用前景分析等）
 \end_layout
 
 \begin_layout Section
@@ -568,10 +686,6 @@ setcounter{section}{0}
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-（建议包括系统方案、实现原理、硬件框图、软件流程、功能、指标等）
 \end_layout
 
 \begin_layout Section
@@ -2381,7 +2495,7 @@ setcounter{section}{0}
 LatexCommand bibtex
 btprint "btPrintAll"
 bibfiles "bib"
-options "plain"
+options "bibtotoc,plain"
 
 \end_inset
 
