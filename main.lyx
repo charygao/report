@@ -1218,114 +1218,100 @@ status open
 \begin_layout Enumerate
 仿射变换：
 \begin_inset Formula 
-\[
-\left(\begin{array}{c}
-x\\
-y
-\end{array}\right)=
-\]
+\begin{equation}
+\left(\begin{array}{l}
+{x}\\
+{y}
+\end{array}\right)=\left(\begin{array}{lll}
+{a_{11}} & {a_{12}} & {b_{1}}\\
+{a_{21}} & {a_{22}} & {b_{2}}
+\end{array}\right)\left(\begin{array}{l}
+{u}\\
+{v}\\
+{1}
+\end{array}\right)
+\end{equation}
 
 \end_inset
 
 
 \begin_inset Formula 
-\[
-\]
+\begin{equation}
+\begin{array}{l}
+{x=a_{11}u+a_{12}v+b_{1}}\\
+{y=a_{21}u+a_{22}v+b_{2}}
+\end{array}
+\end{equation}
 
 \end_inset
 
 
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset Graphics
-	filename figures/pasted1.png
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Graphics
-	filename figures/pasted2.png
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Graphics
-	filename figures/pasted3.png
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
 \begin_layout Enumerate
 透视变换：
-\end_layout
+\begin_inset Formula 
+\begin{equation}
+\left(\begin{array}{l}
+{x}\\
+{y}\\
+{z}
+\end{array}\right)=\left(\begin{array}{lll}
+{a_{11}} & {a_{12}} & {a_{13}}\\
+{a_{21}} & {a_{22}} & {a_{23}}\\
+{a_{31}} & {a_{32}} & {a_{33}}
+\end{array}\right)\left(\begin{array}{l}
+{u}\\
+{v}\\
+{1}
+\end{array}\right)
+\end{equation}
 
-\begin_deeper
-\begin_layout Paragraph*
-\begin_inset Graphics
-	filename figures/pasted4.png
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\begin{array}{l}
+{x=a_{11}u+a_{12}v+a_{13}}\\
+{y=a_{21}u+a_{22}v+a_{23}}\\
+{z=a_{31}u+a_{32}v+a_{33}}
+\end{array}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\begin{array}{l}
+{x=a_{11}u+a_{12}v+a_{13}}\\
+{y=a_{21}u+a_{22}v+a_{23}}\\
+{z=a_{31}u+a_{32}v+a_{33}}
+\end{array}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+x^{\prime}=\frac{x}{z}=\frac{a_{11}u+a_{12}v+a_{13}}{a_{31}u+a_{32}v+a_{33}}=\frac{k_{11}u+k_{12}v+k_{13}}{k_{31}+k_{32}v+1}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+y^{\prime}=\frac{y}{z}=\frac{a_{21}u+a_{22}v+a_{23}}{a_{31}u+a_{32}v+a_{33}}=\frac{k_{21}u+k_{22}v+k_{23}}{k_{31}+k_{32}v+1}
+\end{equation}
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Paragraph*
-\begin_inset Graphics
-	filename figures/pasted5.png
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Paragraph*
-\begin_inset Graphics
-	filename figures/pasted6.png
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Paragraph*
-\begin_inset Graphics
-	filename figures/pasted7.png
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Paragraph*
-\begin_inset Graphics
-	filename figures/pasted8.png
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Paragraph*
-\begin_inset Graphics
-	filename figures/pasted9.png
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
 \begin_layout Standard
 摄像机就相当于透视中心，摄像机和荧幕之间就是像点的集合，荧幕上展示的就是目标点集合； 中心点和某一像点的连线和荧幕的交点就是这个像点的目标点；像点
 \begin_inset Formula $(x,y)$
