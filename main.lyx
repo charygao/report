@@ -208,6 +208,22 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{section}{0}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 （建议包括：背景分析、相关工作、特色描述及应用前景分析等）
 \end_layout
 
@@ -539,6 +555,22 @@ name "sec:特色描述"
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{section}{0}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 （建议包括系统方案、实现原理、硬件框图、软件流程、功能、指标等）
 \end_layout
 
@@ -572,7 +604,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/doc-pub-steps.png
+	filename figures/doc-pub-steps.bmp
 	width 14cm
 
 \end_inset
@@ -612,7 +644,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/doc-read.png
+	filename figures/doc-read.bmp
 	width 14cm
 
 \end_inset
@@ -621,7 +653,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-信息提取流程图。
+水印提取流程图。
 \end_layout
 
 \end_inset
@@ -652,7 +684,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/sys-arch.png
+	filename figures/sys-arch.bmp
 	width 10cm
 
 \end_inset
@@ -661,7 +693,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-系统架构图
+系统架构图。
 \end_layout
 
 \end_inset
@@ -1643,6 +1675,22 @@ status open
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{section}{0}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 本作品可以使用任意多种类的字体作为信息的载体，在本次实现和测试中，为了突出核心想法和测试信息恢复的准确性，选择了两种非常相近的字体。其中一种为华文仿宋，另一种为
 微软简仿宋。
 \end_layout
@@ -1670,9 +1718,12 @@ status open
 
 \begin_layout Subsubsection
 字体识别
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset label
 LatexCommand label
-name "subsec:字体识别"
+name "字体识别"
 
 \end_inset
 
@@ -1798,7 +1849,7 @@ status open
 使用随机生成的数据（超过 200 组）进行编码，按照
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:字体识别"
+reference "字体识别"
 plural "false"
 caps "false"
 noprefix "false"
@@ -2222,6 +2273,22 @@ status open
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{section}{0}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 本作品创新性地将字体作为信息的载体，利用深度学习技术灵活强大的模式识别能力对不同的字体进行精准识别，结合纠错编码，保证了水印信息的无损恢复。从而实现了一种能抵抗
 屏摄过程的文档水印技术。
 \end_layout
@@ -2279,6 +2346,22 @@ status open
 \end_deeper
 \begin_layout Part
 总结
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{section}{0}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
