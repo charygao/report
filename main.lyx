@@ -752,7 +752,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-文档生成流程
+文档生成流程。
 \end_layout
 
 \end_inset
@@ -799,7 +799,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-信息恢复流程
+信息恢复流程。
 \end_layout
 
 \end_inset
@@ -858,7 +858,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-文档生成算法流程
+文档生成算法流程。
 \end_layout
 
 \end_inset
@@ -901,7 +901,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-图片矫正算法
+图片矫正算法。
 \end_layout
 
 \end_inset
@@ -955,7 +955,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-连通域示例
+连通域示例。
 \end_layout
 
 \end_inset
@@ -998,7 +998,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-连通域示例
+连通域示例。
 \end_layout
 
 \end_inset
@@ -1191,7 +1191,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-字符切分流程
+字符切分流程。
 \end_layout
 
 \end_inset
@@ -1252,7 +1252,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-BCH编解码算法
+BCH编解码算法。
 \end_layout
 
 \end_inset
@@ -1483,7 +1483,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-神经网络模型
+神经网络模型。
 \end_layout
 
 \end_inset
@@ -1566,7 +1566,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-文档示例
+屏摄文档示例。
 \end_layout
 
 \end_inset
@@ -1634,7 +1634,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-矫正后的文档示例
+矫正后的文档示例。
 \end_layout
 
 \end_inset
@@ -1828,7 +1828,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-屏摄切割后的文字图像示例
+屏摄切割后的文字图像示例。
 \end_layout
 
 \end_inset
@@ -1856,7 +1856,7 @@ noprefix "false"
 
 \end_inset
 
-中得到的准确率模拟比特翻转，对模拟比特翻转得到的数据进行解码，计算准确率。
+中得到的准确率，模拟字体识别时概率性出现的识别错误，对得到的数据进行解码，并计算准确率。
 \end_layout
 
 \begin_layout Subsubsection
@@ -1902,7 +1902,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-分割前后图像示例
+分割前后图像示例。
 \end_layout
 
 \end_inset
@@ -1965,7 +1965,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-带有水印的文档
+带有水印的文档。
 \end_layout
 
 \end_inset
@@ -2021,7 +2021,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-fontDecode小程序主页 与 裁减页
+fontDecode小程序主页 与 裁减页。
 \end_layout
 
 \end_inset
@@ -2072,7 +2072,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-服务器畸变矫正后的图像
+服务器畸变矫正后的图像。
 \end_layout
 
 \end_inset
@@ -2113,7 +2113,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-切割后的图像
+切割后的图像。
 \end_layout
 
 \end_inset
@@ -2135,7 +2135,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-服务器端处理
+服务器端处理。
 \end_layout
 
 \end_inset
@@ -2178,7 +2178,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-解码成功截图
+解码成功截图。
 \end_layout
 
 \end_inset
