@@ -1647,6 +1647,19 @@ continue from the beginning of Peterson's decoding
 \end_layout
 
 \begin_layout Standard
+网络中主要结构来自于ResNet18
+\begin_inset CommandInset citation
+LatexCommand cite
+key "he2016deep"
+literal "false"
+
+\end_inset
+
+。网络结构中有很多block组成，每个block的构成如下图所示：
+\end_layout
+
+\begin_layout Standard
+\align center
 \begin_inset Float figure
 wide false
 sideways false
@@ -1655,9 +1668,70 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/model.png
-	width 4cm
-	height 15cm
+	filename figures/cancha.jpg
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+残差单元。
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+网络使用残差单元作为block。假设设输入为
+\begin_inset Formula $x$
+\end_inset
+
+，传统网络单元的输出为
+\begin_inset Formula $H\left(x\right)$
+\end_inset
+
+，那么残差单元的输出为：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+F(x)=H\left(x\right)-x
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+引入残差后的映射对输出的变化更敏感，所以效果更好。残差的思想是去掉相同的主体部分，从而突出微小的变化。网络整体结构如下图所示：
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/resnet.png
+	width 90line%
 
 \end_inset
 
@@ -1676,17 +1750,9 @@ status open
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-使用了类ResBlock 结构, 提高网络的深度和前后连接性来提高分类器的分类能力.
 \end_layout
 
 \begin_layout Subsubsection
