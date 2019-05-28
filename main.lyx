@@ -911,8 +911,8 @@ status open
 \end_layout
 
 \begin_layout Standard
-用户选择需要嵌入的信息(url)和嵌入的文档内容, 以二进制为例， 模块对信息(url)进行`0/1‘编码, 将得到的`0/1’比特串进行BCH纠错编码得到最终
-的比特串, 文档生成器通过串中的0和1分别选择两种字体, 按照顺序来生成符合内容的文档.
+用户选择需要嵌入的信息(url)和嵌入的文档内容。以二进制为例，模块对信息(url)进行`0/1‘编码, 将得到的`0/1’比特串进行BCH纠错编码得到最终的比
+特串。文档生成器通过串中的0和1分别选择两种字体，按照顺序来生成符合内容要求的文档。
 \end_layout
 
 \begin_layout Subsection
@@ -966,8 +966,8 @@ status open
 \end_layout
 
 \begin_layout Standard
-服务器端对照片进行畸变校正等预处理，形成我们需要的字体排列形式。然后对矫正过后的图片按照设定的文档规格进行切分，得到一张张单个字体图片。最终，将这些单个字体文件
-按照顺序输入神经网络分类器中进行分类,，按照字体类别得到`0/1'比特串。将比特串输入BCH解码器解码后，恢复到原有信息。
+服务器端对照片进行畸变校正等预处理，形成我们需要的字体排列形式。然后对矫正过后的图片按照设定的文档规格进行切分，得到一张张单个文字图片。最终，将这些单个字体文件
+按照顺序输入神经网络分类器中进行分类，按照字体类别得到`0/1'比特串。将比特串输入BCH解码器解码后，恢复原有信息。
 \end_layout
 
 \begin_layout Section
@@ -1013,8 +1013,9 @@ status open
 \end_layout
 
 \begin_layout Standard
-该算法的核心是一个信息获取器和doc文档生成器, 根据输入的bit 是0 还是1, 来选择生成文档中对应文字的字体, 0 1bit串输入结束后,
- 文档生成器将结果显示出来, 用户可以选择导出成doc格式或pdf 格式。
+该算法的核心是一个信息获取器和文档生成器。根据输入的比特是0还是1，来选择生成文档中对应文字的字体。`0
+\backslash
+1'比特串输入结束后，文档生成器将结果显示出来。
 \end_layout
 
 \begin_layout Subsection
@@ -1056,9 +1057,8 @@ status open
 \end_layout
 
 \begin_layout Standard
-改算法将输入的照片依次进行如下操作: 图片灰度化, 阈值二值化, 检测轮廓, 寻找轮廓的包围矩阵, 并且获取角度, 根据角度进行旋转矫正, 对旋转后的图像进行轮
-廓提取, 裁剪出轮廓内的图像区域, 成为一张独立图像.
- 本算法采用连通域识别的方法, 识别文档照片的边框, 并根据边框的位置进行几何矫正, 最后得到矫正后的图片。
+该算法将输入的照片依次进行如下操作：图片灰度化、 阈值二值化、检测轮廓、寻找轮廓的包围矩阵。获取角度，根据角度进行旋转矫正。随后对旋转后的图像进行轮廓提取，裁剪
+出轮廓内的图像区域，成为一张独立图像。本算法采用连通域识别的方法：识别文档照片的边框, 并根据边框的位置进行几何矫正，最后得到矫正后的图片。
 \end_layout
 
 \begin_layout Subsubsection
@@ -1658,6 +1658,19 @@ continue from the beginning of Peterson's decoding
 \end_layout
 
 \begin_layout Standard
+网络中主要结构来自于ResNet18
+\begin_inset CommandInset citation
+LatexCommand cite
+key "he2016deep"
+literal "false"
+
+\end_inset
+
+。网络结构中有很多block组成，每个block的构成如下图所示：
+\end_layout
+
+\begin_layout Standard
+\align center
 \begin_inset Float figure
 wide false
 sideways false
@@ -1666,9 +1679,70 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/model.png
-	width 4cm
-	height 15cm
+	filename figures/cancha.jpg
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+残差单元。
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+网络使用残差单元作为block。假设设输入为
+\begin_inset Formula $x$
+\end_inset
+
+，传统网络单元的输出为
+\begin_inset Formula $H\left(x\right)$
+\end_inset
+
+，那么残差单元的输出为：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+F(x)=H\left(x\right)-x\text{，}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+引入残差后的映射对输出的变化更敏感，所以效果更好。残差的思想是去掉相同的主体部分，从而突出微小的变化。网络整体结构如下图所示：
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/resnet.png
+	width 90line%
 
 \end_inset
 
@@ -1687,17 +1761,9 @@ status open
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-使用了类ResBlock 结构, 提高网络的深度和前后连接性来提高分类器的分类能力.
 \end_layout
 
 \begin_layout Subsubsection
@@ -2073,14 +2139,6 @@ status collapsed
 ch训练出现了过拟合，于是选择了第3次epoch训练出模型进行之后的测试与使用。
 \end_layout
 
-\begin_layout Section
-功能指标
-\end_layout
-
-\begin_layout Standard
-使用字体识别的准确率来评估本作品的效果。
-\end_layout
-
 \begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
@@ -2260,7 +2318,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-我们对每个问题的结果（前十题为正常题，后4题为验证题）和去除恶意用户后的总体结果分别进行了统计，统计结果如下图所示。总体上，我们选定的两种字体不可区分的人数比例
+我们对每个问题的结果（前十题为正常题，后四题为验证题）和去除恶意用户后的总体结果分别进行了统计，统计结果如下图所示。总体上，我们选定的两种字体不可区分的人数比例
 达到了92.5%，超过了设定的阈值。
 \end_layout
 
