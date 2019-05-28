@@ -1225,9 +1225,26 @@ status open
 字体人眼不可识别性测试
 \end_layout
 
+\begin_layout Paragraph*
+测试方法及标准
+\end_layout
+
 \begin_layout Standard
-作为文档水印，两种编码字体不能被人眼区分是非常重要的。为了确定我们选定字体的差异是否是难以察觉的，我们对一定范围内人群进行了问卷调查。若认为两种字体人肉眼不可区
-分的人数比到达特定阈值，我们便可以认为选择的两种字体是可以用来编码的。
+作为文档水印，两种编码字体不能被人眼区分是非常重要的。为了确定我们选定字体的差异是否是难以察觉的，我们使用了问卷调查的形式。若认为两种字体人肉眼不可区分的人数比
+例到达特定阈值，我们便可以认为选择的两种字体是可以用来编码的。
+\end_layout
+
+\begin_layout Paragraph*
+测试细节
+\end_layout
+
+\begin_layout Standard
+我们选定90%作为阈值，并随机抽取几组字作为问题（如左图所示）。并且，为了防止参与者中有恶意用户，我们设置了几组验证题（如右图所示）。正常问题中的字体为我们选定
+的两种字体验证问题中的
+\end_layout
+
+\begin_layout Paragraph
+测试结果
 \end_layout
 
 \begin_layout Subsubsection
@@ -1551,8 +1568,8 @@ fontDecode小程序主页 与 裁减页
 \end_layout
 
 \begin_layout Standard
-服务器收到上传图片后，先进行定位、畸变矫正、切割。将切割后的图片规范到224*224并进行归一化处理，依次输入进网络。将网络输出的比特串进行BCH解码，即能得到
-图片中的隐藏信息。
+服务器收到上传图片后，先进行定位、畸变矫正、切割。将切割后的图片规范到224 x 224并进行归一化处理，依次输入进网络。将网络输出的比特串进行BCH解码，即能
+得到图片中的隐藏信息。
 \end_layout
 
 \begin_layout Standard
@@ -1716,13 +1733,13 @@ status open
 \end_layout
 
 \begin_layout Standard
-考虑到微信小程序已具备各手机平台适应性，我们仅选用MI 8、Huawei mate20、360、vivoX7作为移动端测试平台，测试其在微信小程序内打开系统相机
-、上传图片、裁剪图片和与服务器使用https协议通信的可能性。
+考虑到微信小程序已具备各手机平台适应性，我们仅选用MI 8、Huawei mate20、360 N6、vivoX7作为移动端测试平台，测试其在微信小程序内打开系
+统相机、上传图片、裁剪图片和与服务器使用https协议通信的可能性。
 \end_layout
 
 \begin_layout Standard
-不同手机自带的摄像头在性能方面也有不同，如像素值、对焦能力等。因此我们在采集数据时，混合了四款手机拍照得到的照片进行测试训练。增加神经网络对不同手机拍摄出的不同
-清晰度的图片的识别率。
+不同手机自带的摄像头在性能方面也有不同，如像素值、对焦能力等。因此我们在采集数据时，混合了四款手机拍照得到的照片进行测试训练。增加神经网络识别不同手机拍摄的图片
+的能力。
 \end_layout
 
 \begin_layout Paragraph
@@ -1730,7 +1747,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-考虑不同显示屏的分辨率、色差等会对图片产生影响，我们在HP Pavilion 15-au147tx、mac air13.3－inch (1440
+考虑不同显示屏的分辨率、色差等会对图片产生影响，我们在HP Pavilion 15-au147tx、mac air13.3-inch (1440
  x 900)、mac pro13.3-inch (2560 x 1600)均进行了采样，并在这些显示屏上拍取最终编码后的图片进行解码测试。
 \end_layout
 
@@ -1739,8 +1756,8 @@ status open
 \end_layout
 
 \begin_layout Standard
-服务器端配置为Ubuntu 16.04 64位、1核、内存2G。服务使用nginx+gunicorn+flask进行部署环境。经测试，该环境足够为小量用户提供可靠
-服务。
+服务器端配置为Ubuntu 16.04（64位、1核、内存2G）。服务使用nginx+gunicorn+flask进行部署环境。经测试，该环境足够为小量用户提供可
+靠服务。
 \end_layout
 
 \begin_layout Subsection
@@ -1778,14 +1795,6 @@ status open
 
 \begin_layout Standard
 测试数据中包含手持拍摄和三脚架固定拍摄数据，以检测网络对模糊图像的识别率。需要注意的是，抖动程度不应太大导致图片文字模糊不清。
-\end_layout
-
-\begin_layout Section
-结果分析
-\end_layout
-
-\begin_layout Standard
-TODO
 \end_layout
 
 \begin_layout Part
