@@ -955,8 +955,8 @@ status open
 \end_layout
 
 \begin_layout Standard
-服务器端对照片进行畸变校正等预处理, 使得最后的照片能够字体排列整齐, 对矫正过后的图片按照设定的文档规格进行切分, 得到一张张单个字体图片,
- 将这些单个字体文件按照顺序输入神经网络分类器中进行分类, 按照类别得到01比特串, 输入BCH解码器解码后, 恢复到原有信息。
+服务器端对照片进行畸变校正等预处理，形成我们需要的字体排列形式。然后对矫正过后的图片按照设定的文档规格进行切分，得到一张张单个字体图片。最终，将这些单个字体文件
+按照顺序输入神经网络分类器中进行分类,，按照字体类别得到`0/1'比特串。将比特串输入BCH解码器解码后，恢复到原有信息。
 \end_layout
 
 \begin_layout Section
@@ -1070,6 +1070,11 @@ status open
 \begin_inset Graphics
 	filename figures/connectspace1.png
 
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 1cm
 \end_inset
 
 
