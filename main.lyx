@@ -300,10 +300,6 @@ setcounter{page}{1}
 \end_layout
 
 \begin_layout Abstract
-（请简要说明创作本作品之动机、功能、特性、创新处、实用性）
-\end_layout
-
-\begin_layout Abstract
 文档水印技术的重要性。TODO
 \end_layout
 
@@ -1306,6 +1302,8 @@ status open
 \align center
 \begin_inset Graphics
 	filename figures/char-seg.png
+	width 10cm
+	height 15cm
 
 \end_inset
 
@@ -1598,6 +1596,8 @@ status open
 \align center
 \begin_inset Graphics
 	filename figures/model.png
+	width 4cm
+	height 15cm
 
 \end_inset
 
