@@ -449,7 +449,8 @@ literal "false"
 
 \end_inset
 
-——使用静态方法提取字体特征进行识别。进来，神经网络与深度学习技术崛起兴盛，使用神经网络识别字体的技术越来越多，而且效果都非常好。Chen 2014
+——使用静态方法提取字体特征进行识别。进来，神经网络与深度学习技术崛起兴盛，使用神经网络识别字体的技术越来越多，而且效果都非常好。Chen et
+ .al
 \begin_inset CommandInset citation
 LatexCommand cite
 key "chen2014large"
@@ -457,7 +458,7 @@ literal "false"
 
 \end_inset
 
-中就提出了一种规模可变的监督学习方法。随后Wang 2015
+中就提出了一种规模可变的监督学习方法。随后Wang et .al
 \begin_inset CommandInset citation
 LatexCommand cite
 key "wang2015deepfont"
@@ -466,7 +467,7 @@ literal "false"
 \end_inset
 
 提出使用CNN识别字体的方案。我们的识别方法也运用了神经网络，并将CNN作为核心的一环。最终搭建的网络模型使用了一种效果非常好的图片分类模型 ——He
- 2016
+ et .al
 \begin_inset CommandInset citation
 LatexCommand cite
 key "he2016deep"
@@ -487,7 +488,7 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-第一种方案是cover text generation CTG，wayner 1992 2009
+第一种方案是cover text generation CTG，wayner et .al
 \begin_inset CommandInset citation
 LatexCommand cite
 key "wayner1992mimic"
@@ -520,7 +521,15 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-第三种方案利用了文档格式上的特征，例如改变文字大小、颜色、下划线等 TODO
+第三种方案利用了文档格式上的特征，例如改变文字大小、颜色、下划线等特征
+\begin_inset CommandInset citation
+LatexCommand cite
+key "panda2015text"
+literal "false"
+
+\end_inset
+
+。这种方案可以大大提高识别的准确度，但是没有保证水印的不可见性。
 \end_layout
 
 \begin_layout Paragraph
