@@ -8,26 +8,14 @@
 \begin_preamble
 \usepackage{listings}
 \usepackage{xcolor}
-\lstset{ 
-    language=verilog,
-    backgroundcolor=\color{blue!1},
-    basicstyle=\small\ttfamily,
-    breaklines=true,
-    numbers=left,
-    numberstyle=\tiny\menlo,
-    showstringspaces=false,
-    keywordstyle=\color{blue!60},
-    commentstyle=\color{red!50!green!50!blue!50}, 
-    stringstyle=\color{purple!60},
-    frame=shadowbox,
-    rulesepcolor=\color{ red!20!green!20!blue!20},
-    escapeinside=``,
-    xleftmargin=1em,
-    xrightmargin=1em,
-    aboveskip=1em,
-    framexleftmargin=2em
-}
 \usepackage{hyperref}
+\ctexset{
+    part={
+        titleformat=\raggedright,
+        name={第,章},
+        number=\chinese{part}
+    }
+}
 \end_preamble
 \options UTF8
 \use_default_options true
@@ -116,8 +104,119 @@
 
 \begin_body
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Title
-基于深度学习的抗屏摄文档水印技术作品报告
+
+\series bold
+2019 年全国大学生信息安全竞赛
+\begin_inset Newline newline
+\end_inset
+
+作品报告
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 5cm*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size larger
+作品名称：
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size larger
+基于深度学习的抗屏摄文档水印技术
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size larger
+电子邮箱：
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size larger
+提交日期：
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -177,6 +276,29 @@ LatexCommand tableofcontents
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagestyle{plain}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{page}{1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Abstract
 （请简要说明创作本作品之动机、功能、特性、创新处、实用性）
 \end_layout
@@ -208,7 +330,19 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Standard
-（建议包括：背景分析、相关工作、特色描述及应用前景分析等）
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{section}{0}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -550,7 +684,19 @@ name "sec:特色描述"
 \end_layout
 
 \begin_layout Standard
-（建议包括系统方案、实现原理、硬件框图、软件流程、功能、指标等）
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{section}{0}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -583,7 +729,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/doc-pub-steps.png
+	filename figures/doc-pub-steps.bmp
 	width 14cm
 
 \end_inset
@@ -623,7 +769,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/doc-read.png
+	filename figures/doc-read.bmp
 	width 14cm
 
 \end_inset
@@ -632,7 +778,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-信息提取流程图。
+水印提取流程图。
 \end_layout
 
 \end_inset
@@ -663,7 +809,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/sys-arch.png
+	filename figures/sys-arch.bmp
 	width 10cm
 
 \end_inset
@@ -672,7 +818,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-系统架构图
+系统架构图。
 \end_layout
 
 \end_inset
@@ -731,7 +877,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-文档生成流程
+文档生成流程。
 \end_layout
 
 \end_inset
@@ -778,7 +924,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-信息恢复流程
+信息恢复流程。
 \end_layout
 
 \end_inset
@@ -837,7 +983,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-文档生成算法流程
+文档生成算法流程。
 \end_layout
 
 \end_inset
@@ -880,7 +1026,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-图片矫正算法
+图片矫正算法。
 \end_layout
 
 \end_inset
@@ -934,7 +1080,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-连通域示例
+连通域示例。
 \end_layout
 
 \end_inset
@@ -977,7 +1123,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-连通域示例
+连通域示例。
 \end_layout
 
 \end_inset
@@ -1170,7 +1316,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-字符切分流程
+字符切分流程。
 \end_layout
 
 \end_inset
@@ -1231,7 +1377,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-BCH编解码算法
+BCH编解码算法。
 \end_layout
 
 \end_inset
@@ -1462,7 +1608,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-神经网络模型
+神经网络模型。
 \end_layout
 
 \end_inset
@@ -1545,7 +1691,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-文档示例
+屏摄文档示例。
 \end_layout
 
 \end_inset
@@ -1613,7 +1759,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-矫正后的文档示例
+矫正后的文档示例。
 \end_layout
 
 \end_inset
@@ -1654,6 +1800,22 @@ status open
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{section}{0}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 本作品可以使用任意多种类的字体作为信息的载体，在本次实现和测试中，为了突出核心想法和测试信息恢复的准确性，选择了两种非常相近的字体。其中一种为华文仿宋，另一种为
 微软简仿宋。
 \end_layout
@@ -1681,9 +1843,12 @@ status open
 
 \begin_layout Subsubsection
 字体识别
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset label
 LatexCommand label
-name "subsec:字体识别"
+name "字体识别"
 
 \end_inset
 
@@ -1788,7 +1953,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-屏摄切割后的文字图像示例
+屏摄切割后的文字图像示例。
 \end_layout
 
 \end_inset
@@ -1809,14 +1974,14 @@ status open
 使用随机生成的数据（超过 200 组）进行编码，按照
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:字体识别"
+reference "字体识别"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
-中得到的准确率模拟比特翻转，对模拟比特翻转得到的数据进行解码，计算准确率。
+中得到的准确率，模拟字体识别时概率性出现的识别错误，对得到的数据进行解码，并计算准确率。
 \end_layout
 
 \begin_layout Subsubsection
@@ -1862,7 +2027,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-分割前后图像示例
+分割前后图像示例。
 \end_layout
 
 \end_inset
@@ -1925,7 +2090,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-带有水印的文档
+带有水印的文档。
 \end_layout
 
 \end_inset
@@ -1981,7 +2146,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-fontDecode小程序主页 与 裁减页
+fontDecode小程序主页 与 裁减页。
 \end_layout
 
 \end_inset
@@ -2032,7 +2197,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-服务器畸变矫正后的图像
+服务器畸变矫正后的图像。
 \end_layout
 
 \end_inset
@@ -2073,7 +2238,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-切割后的图像
+切割后的图像。
 \end_layout
 
 \end_inset
@@ -2095,7 +2260,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-服务器端处理
+服务器端处理。
 \end_layout
 
 \end_inset
@@ -2138,7 +2303,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-解码成功截图
+解码成功截图。
 \end_layout
 
 \end_inset
@@ -2233,6 +2398,22 @@ status open
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{section}{0}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 本作品创新性地将字体作为信息的载体，利用深度学习技术灵活强大的模式识别能力对不同的字体进行精准识别，结合纠错编码，保证了水印信息的无损恢复。从而实现了一种能抵抗
 屏摄过程的文档水印技术。
 \end_layout
@@ -2293,6 +2474,22 @@ status open
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{section}{0}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 本作品提出了在中文文档中进行高不可见性、高鲁棒性水印的关键技术，并实现了一个原型系统来演示其效果。演示系统基于屏摄文档，但可以扩展到其他形式的文档，具有普遍应用
 的潜力。
 \end_layout
@@ -2309,7 +2506,7 @@ status open
 LatexCommand bibtex
 btprint "btPrintAll"
 bibfiles "bib"
-options "plain"
+options "bibtotoc,plain"
 
 \end_inset
 
