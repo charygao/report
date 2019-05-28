@@ -1748,7 +1748,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename figures/after-fix.jpg
-	width 10cm
+	width 8cm
 
 \end_inset
 
@@ -1778,6 +1778,228 @@ status open
 
 \begin_layout Standard
 在矫正后的图像上按照预定的行列数进行均等划分，得到一个一个字的图像。
+\end_layout
+
+\begin_layout Paragraph
+网络训练
+\end_layout
+
+\begin_layout Standard
+将切分好的图像处理为神经网络能接受的格式，随机输入进神经网络，利用BP算法进行训练。在参数选择上，我们选择batch size为64，epoch为12，学习率为
+0.001。我们选用CrossEntropy作为损失函数，SGD作为优化器算法。
+\end_layout
+
+\begin_layout Standard
+在学习过程中，我们每个minibatch（400个batch）计算一次训练集loss和accuracy。某一次训练的结果如下图所示：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/loss graph of train dataset.png
+	height 4.5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+训练集loss，
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{}
+\length 0.5cm
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/accuracy graph of train dataset .png
+	height 4.5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+训练集accuracy。
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+训练集结果。
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+每个epoch计算一次测试集loss和accuracy，结果如下图所示：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/loss graph of test dataset.png
+	height 4.5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+测试集loss，
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/accuracy graph of test dataset.png
+	height 4.5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+测试集accuracy。
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+测试集结果。
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+从图中可看出训练集loss和accuracy一直在减小和增加。然而测试集loss出现了一个增加高峰，accuracy出现了一个降低的低谷。我们判断在第3个epo
+ch训练出现了过拟合，于是选择了第3次epoch训练出模型进行之后的测试与使用。
 \end_layout
 
 \begin_layout Section
@@ -1850,8 +2072,9 @@ setcounter{section}{0}
 \end_layout
 
 \begin_layout Standard
-我们选定90%作为阈值，并随机抽取几组字作为问题（如左图所示）。并且，为了防止参与者中有恶意用户，我们设置了四组组验证题（如右图所示）。正常问题中的两个字分别为
-我们选定的两种字体，验证问题中的两个字则为相同字体。若参与者在四个验证问题中有两个问题回答错误，我们则认为他为恶意用户，该用户的回答不计入结果计算。
+我们选定90%作为阈值，并随机抽取两个相同文字让问卷参与者进行辨别（如左图所示）。并且，为了防止参与者中有恶意用户，我们设置了四组组验证题（如右图所示）。正常问
+题中的两个文字分别为我们选定的两种字体，验证问题中的两个文字则为相同字体。若参与者在四个验证问题中有两个问题回答错误，我们则认为他为恶意用户，该用户的回答不计入
+结果计算。
 \end_layout
 
 \begin_layout Standard
@@ -2221,37 +2444,19 @@ status open
 \end_layout
 
 \begin_layout Standard
-12000张字体图片的识别准确率为92%。
+12000张字体图片的识别准确率为92%，在准确率允许范围内。
 \end_layout
 
 \begin_layout Subsubsection
-文档片解码正确率测试
+文档分割矫正正确性测试
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Paragraph*
 测试方法及标准
 \end_layout
 
 \begin_layout Standard
-使用随机生成的数据（超过 200 组）进行编码，按照
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "字体识别"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-中得到的准确率，模拟字体识别时概率性出现的识别错误，对得到的数据进行解码，并计算准确率。
-\end_layout
-
-\begin_layout Subsubsection
-文档分割矫正
-\end_layout
-
-\begin_layout Standard
-准备一组（超过 20 张）屏摄文档的照片，用我们的文档分割算法进行分割，计算分割的准确率。
+准备一组（超过 300 张）屏摄文档的照片，用我们的文档分割算法进行分割，计算分割的准确率。
 \end_layout
 
 \begin_layout Standard
@@ -2300,6 +2505,218 @@ status open
 \end_inset
 
 
+\end_layout
+
+\begin_layout Paragraph*
+测试细节
+\end_layout
+
+\begin_layout Standard
+我们对不同旋转角度的图片进行测试，也对不同远近拍照进行了测试。
+\end_layout
+
+\begin_layout Paragraph
+测试结果
+\end_layout
+
+\begin_layout Standard
+旋转角度小于等于正负10度、不遮挡边框的情况下，文档均能被正常分割矫正。
+\end_layout
+
+\begin_layout Subsubsection
+文档解码正确率测试
+\end_layout
+
+\begin_layout Paragraph
+测试方法及标准
+\end_layout
+
+\begin_layout Standard
+随机生成数据（`0/1’比特串），并对数据进行BCH编码。利用编码后的比特串产生隐写文档。对文档进行拍照、畸变矫正、切分后，使用
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "字体识别"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+中达到要求的网络提取出信息，将提取信息与文档中真实隐写信息比对，计算识别准确率。最终将提取信息进行BCH解码，观察解码后的数据与一开始随机生成的数据是否相同。
+\end_layout
+
+\begin_layout Paragraph*
+测试细节
+\end_layout
+
+\begin_layout Standard
+提取信息与文档中真实隐写信息比对的准确率应高于90%才能正确解码。我们随机产生了三组数据（`0/1'比特串），对每组数据产生了12份隐写文档，每份文档中含有14
+4个文字。
+\end_layout
+
+\begin_layout Paragraph*
+测试结果
+\end_layout
+
+\begin_layout Standard
+结果如下表所示：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+文档解码正确率结果，
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="4">
+<features booktabs="true" tabularvalignment="middle" tabularwidth="70line%">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<row interlinespace="0.1cm">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+数据1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+数据2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+数据3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row interlinespace="0.1cm">
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+平均识别率
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+93.2%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+95%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+92.1%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row interlinespace="0.1cm">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+正确解码的文档数
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+所有文档中只有两份文档识别正确率为88%，无法被正确BCH解码。我们的系统正确提取隐写信息的概率为93.75%
 \end_layout
 
 \begin_layout Subsection
@@ -2384,20 +2801,20 @@ status open
 \begin_inset Graphics
 	filename figures/system-test/wx-index.jpg
 	lyxscale 10
-	height 10cm
+	height 7cm
 
 \end_inset
 
 
 \begin_inset space \hspace*{}
-\length 2cm
+\length 4cm
 \end_inset
 
 
 \begin_inset Graphics
 	filename figures/system-test/cut-image.jpg
 	lyxscale 10
-	height 10cm
+	height 7cm
 
 \end_inset
 
