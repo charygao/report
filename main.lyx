@@ -372,7 +372,7 @@ setcounter{section}{0}
 相关工作
 \end_layout
 
-\begin_layout Quote
+\begin_layout Standard
 我们的工作基于Chang et .al
 \begin_inset CommandInset citation
 LatexCommand cite
