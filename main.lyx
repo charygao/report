@@ -891,8 +891,8 @@ status open
 \end_layout
 
 \begin_layout Standard
-用户选择需要嵌入的信息(url)和带嵌入的文档内容, 模块对信息(url)进行01编码, 将得到的01bit串进行BCH纠错码编码得到最终的bit串,
- 文档生成器通过bit串中的0 和1 分别选择两种字体, 按照顺序来生成符合内容的文档.
+用户选择需要嵌入的信息(url)和嵌入的文档内容, 以二进制为例， 模块对信息(url)进行`0/1‘编码, 将得到的`0/1’比特串进行BCH纠错编码得到最终
+的比特串, 文档生成器通过串中的0和1分别选择两种字体, 按照顺序来生成符合内容的文档.
 \end_layout
 
 \begin_layout Subsection
@@ -946,8 +946,8 @@ status open
 \end_layout
 
 \begin_layout Standard
-服务器端对照片进行畸变校正等预处理, 使得最后的照片能够字体排列整齐, 对矫正过后的图片按照设定的文档规格进行切分, 得到一张张单个字体图片,
- 将这些单个字体文件按照顺序输入神经网络分类器中进行分类, 按照类别得到01比特串, 输入BCH解码器解码后, 恢复到原有信息。
+服务器端对照片进行畸变校正等预处理, 形成我们需要的字体排列形式, 对矫正过后的图片按照设定的文档规格进行切分, 得到一张张单个字体图片, 将这些单个字体文件按
+照顺序输入神经网络分类器中进行分类, 按照类别得到比特串, 输入BCH解码器解码后, 恢复到原有信息。
 \end_layout
 
 \begin_layout Section
@@ -979,7 +979,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-文档生成算法流程。
+文档生成算法流程
 \end_layout
 
 \end_inset
@@ -993,8 +993,8 @@ status open
 \end_layout
 
 \begin_layout Standard
-该算法的核心是一个选择生成和doc文档生成器, 这个核心可以根据输入的bit 是0 还是1, 来选择生成文档中对应位置的字使用哪种字体, 0 1bit串输入结束
-后, 文档文档生成器将结果显示出来, 用户可以选择导出成doc格式和pdf 格式.
+该算法的核心是一个信息获取器和doc文档生成器, 根据输入的bit 是0 还是1, 来选择生成文档中对应文字的字体, 0 1bit串输入结束后,
+ 文档生成器将结果显示出来, 用户可以选择导出成doc格式或pdf 格式。
 \end_layout
 
 \begin_layout Subsection
@@ -1037,8 +1037,8 @@ status open
 
 \begin_layout Standard
 改算法将输入的照片依次进行如下操作: 图片灰度化, 阈值二值化, 检测轮廓, 寻找轮廓的包围矩阵, 并且获取角度, 根据角度进行旋转矫正, 对旋转后的图像进行轮
-廓提取, 对轮廓内的图像区域抠出来, 成为一张独立图像.
- 本算法采用连通域识别的方法, 识别文档照片的边框, 并根据边框的位置进行几何矫正, 最后得到矫正后的图片
+廓提取, 裁剪出轮廓内的图像区域, 成为一张独立图像.
+ 本算法采用连通域识别的方法, 识别文档照片的边框, 并根据边框的位置进行几何矫正, 最后得到矫正后的图片。
 \end_layout
 
 \begin_layout Subsubsection
@@ -1047,7 +1047,7 @@ status open
 
 \begin_layout Standard
 在图像中，最小的单位是像素，每个像素周围有8个邻接像素，常见的邻接关系有2种：4邻接与8邻接。4邻接一共4个点，即上下左右，如下左图所示。8邻接的点一共有8个，
-包括了对角线位置的点，如下下图所示。
+包括了对角线位置的点，如下右图所示。
 \end_layout
 
 \begin_layout Standard
@@ -1094,9 +1094,9 @@ status open
 \end_layout
 
 \begin_layout Standard
-如果像素点A与B邻接，我们称A与B连通，于是我们不加证明的有如下的结论： 如果A与B连通，B与C连通，则A与C连通。在视觉上看来，彼此连通的点形成了一个区域，而
-不连通的点形成了不同的区域。这样的一个所有的点彼此连通点构成的集合，我们称为一个连通区域。下面这符图中，如果考虑4邻接，则有3个连通区域；如果考虑8邻接，则有2
-个连通区域。（注：图像是被放大的效果，图像正方形实际只有4个像素）。
+如果像素点A与B邻接，我们称A与B连通，于是我们有如下的结论： 如果A与B连通，B与C连通，则A与C连通。在视觉上看来，彼此连通的点形成了一个区域，而不连通的点
+形成了不同的区域。这样的一个所有的点彼此连通点构成的集合，我们称为一个连通区域。下面这符图中，如果考虑4邻接，则有3个连通区域；如果考虑8邻接，则有2个连通区域
+。（注：图像是被放大的效果，图像正方形实际只有4个像素）。
 \end_layout
 
 \begin_layout Standard
@@ -1141,9 +1141,9 @@ status open
 \end_layout
 
 \begin_layout Standard
-连通区域分析是一种在CVPR和图像分析处理的众多应用领域中较为常用和基本的方法。例如：OCR识别中字符分割提取（车牌识别、文本识别、字幕识别等）、视觉跟踪中的运
-动前景目标分割与提取（行人入侵检测、遗留物体检测、基于视觉的车辆检测与跟踪等）、医学图像处理（感兴趣目标区域提取）、等等。也就是说，在需要将前景目标提取出来以便
-后续进行处理的应用场景中都能够用到连通区域分析方法，通常连通区域分析处理的对象是一张二值化后的图像。
+连通区域分析是一种常用和基本的方法。例如：OCR识别中字符分割提取（车牌识别、文本识别、字幕识别等）、视觉跟踪中的运动前景目标分割与提取（行人入侵检测、遗留物体
+检测、基于视觉的车辆检测与跟踪等）、医学图像处理（感兴趣目标区域提取）等等。也就是说，在需要将前景目标提取出来以便后续进行处理的应用场景中都能够用到连通区域分析
+方法，通常连通区域分析处理的对象是一张二值化后的图像。
 \end_layout
 
 \begin_layout Standard
@@ -1151,12 +1151,24 @@ status open
 \end_layout
 
 \begin_layout Enumerate
-扫描图像，直到当前像素点B(x,y) == 1：
+记图像为B， 
+\begin_inset Formula $(x,y)$
+\end_inset
+
+为像素位置，扫描图像，直到当前像素点
+\begin_inset Formula $B(x,y)=1$
+\end_inset
+
+：
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
-将B(x,y)作为种子（像素位置），并赋予其一个label，然后将该种子相邻的所有前景像素都压入栈中；
+将
+\begin_inset Formula $B(x,y)$
+\end_inset
+
+作为种子（像素位置），并赋予其一个label，然后将该种子相邻的所有前景像素都压入栈中；
 \end_layout
 
 \begin_layout Enumerate
@@ -1173,11 +1185,11 @@ status open
 
 \end_deeper
 \begin_layout Enumerate
-（2）重复第（1）步，直到扫描结束；
+重复第（1）步，直到扫描结束；
 \end_layout
 
 \begin_layout Enumerate
-扫描结束后，就可以得到图像B中所有的连通区域；
+扫描结束后，就可以得到图像B中所有的连通区域
 \end_layout
 
 \begin_layout Subsubsection
@@ -1191,6 +1203,13 @@ status open
 
 \begin_layout Enumerate
 仿射变换：
+\begin_inset Formula 
+\[
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -1283,9 +1302,35 @@ status open
 
 \end_deeper
 \begin_layout Standard
-摄像机就相当于透视中心，摄像机和荧幕之间就是像点的集合，荧幕上展示的就是目标点集合； 中心点和某一像点的连线和荧幕的交点就是这个像点的目标点；像点(x,
- y)和目标点(s, t)是一一对应的关系，我们可以使用一个[3x3]的矩阵A描述他们之间的映射关系：[s, t, 1]T = dot(A, [x,
- y, 1]T) --- A矩阵乘 (x, y)的齐次坐标的转置就是(s, t)的齐次坐标的转置，每一个透视变换都对应着特定的变换矩阵A
+摄像机就相当于透视中心，摄像机和荧幕之间就是像点的集合，荧幕上展示的就是目标点集合； 中心点和某一像点的连线和荧幕的交点就是这个像点的目标点；像点
+\begin_inset Formula $(x,y)$
+\end_inset
+
+和目标点
+\begin_inset Formula $(s,t)$
+\end_inset
+
+是一一对应的关系，我们可以使用一个[3x3]的矩阵
+\begin_inset Formula $A$
+\end_inset
+
+描述他们之间的映射关系：
+\begin_inset Formula $[s,t,1]T=dot(A,[x,y,1]T)$
+\end_inset
+
+ --- A矩阵乘
+\begin_inset Formula $(x,y)$
+\end_inset
+
+的齐次坐标的转置就是
+\begin_inset Formula $(s,t)$
+\end_inset
+
+的齐次坐标的转置，每一个透视变换都对应着特定的变换矩阵
+\begin_inset Formula $A$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1302,8 +1347,8 @@ status open
 \align center
 \begin_inset Graphics
 	filename figures/char-seg.png
-	width 10cm
-	height 15cm
+	width 5cm
+	height 10cm
 
 \end_inset
 
@@ -1332,7 +1377,7 @@ status open
 \end_layout
 
 \begin_layout Subsubsection
-tesseract 介绍
+Tesseract 介绍
 \end_layout
 
 \begin_layout Standard
@@ -1347,7 +1392,7 @@ c OS 等主流平台。但作为一个引擎，它只提供命令行工具。
 
 \begin_layout Standard
 信息恢复模块中, 输入照片校正后, 使用tesseract 对矫正后的照片进行切分, 然后逐个识别, 如果是标点符号则直接丢弃, 如果是中文字,
- 则识别后判断是否在我们的编码字符库中, 如果不在也丢弃, 最后对切分之后的字符图片按照顺序保存, 待输入到神经网络进行分类和解码.
+ 则识别后判断是否在我们的编码字符库中, 如果不在也丢弃, 最后对切分之后的字符图片按照顺序保存, 并输入到神经网络进行分类和解码。
 \end_layout
 
 \begin_layout Subsection
@@ -1431,7 +1476,7 @@ BCH 码使用有限域上的域论与多项式。为了检测错误可以构建�
 \end_inset
 
 ，这个代码就是所有满足
-\begin_inset Formula $C(x)≡0（modm_{1}(x)）$
+\begin_inset Formula $C(x)\equiv0\text{（}modm_{1}(x)$
 \end_inset
 
 且根为 
@@ -1447,6 +1492,10 @@ BCH 码使用有限域上的域论与多项式。为了检测错误可以构建�
 
 \begin_layout Subsubsection
 解码算法
+\end_layout
+
+\begin_layout Standard
+解码算法如下所示
 \end_layout
 
 \begin_layout Enumerate
@@ -1518,7 +1567,7 @@ s_{2t}
 \begin_inset Formula ${\displaystyle det(S_{t\times t})=0}$
 \end_inset
 
-，那么按照
+，那么按照以下运算法则进行计算
 \end_layout
 
 \begin_deeper
