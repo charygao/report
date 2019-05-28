@@ -24,8 +24,8 @@
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman "default" "default"
-\font_sans "default" "default"
+\font_roman "default" "宋体"
+\font_sans "default" "宋体"
 \font_typewriter "default" "default"
 \font_math "auto" "auto"
 \font_default_family default
@@ -42,7 +42,7 @@
 \bibtex_command default
 \index_command default
 \float_placement H
-\paperfontsize default
+\paperfontsize 12
 \spacing onehalf
 \use_hyperref true
 \pdf_bookmarks true
@@ -120,6 +120,22 @@ pagestyle{empty}
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+date{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Title
 
 \series bold
@@ -140,10 +156,10 @@ pagestyle{empty}
 \begin_layout Standard
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="3" columns="2">
+<lyxtabular version="3" rows="5" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="left" valignment="top" width="0pt">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
@@ -156,7 +172,7 @@ pagestyle{empty}
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -174,13 +190,33 @@ pagestyle{empty}
 
 \begin_layout Plain Layout
 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
 \size larger
 电子邮箱：
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -198,13 +234,33 @@ hustcw1998@gmail.com
 
 \begin_layout Plain Layout
 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
 \size larger
 提交日期：
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1359,7 +1415,7 @@ y^{\prime}=\frac{y}{z}=\frac{a_{21}u+a_{22}v+a_{23}}{a_{31}u+a_{32}v+a_{33}}=\fr
 \begin_inset Formula $A$
 \end_inset
 
-
+。
 \end_layout
 
 \begin_layout Subsection
@@ -1505,7 +1561,7 @@ BCH 码使用有限域上的域论与多项式。为了检测错误可以构建�
 \end_inset
 
 ，这个代码就是所有满足
-\begin_inset Formula $C(x)\equiv0\text{（}modm_{1}(x)$
+\begin_inset Formula $C(x)\equiv0\ mod\ m_{1}(x)$
 \end_inset
 
 且根为 
@@ -1743,7 +1799,7 @@ F(x)=H\left(x\right)-x\text{，}
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
