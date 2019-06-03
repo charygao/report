@@ -14,8 +14,24 @@
         titleformat=\raggedright,
         name={第,章},
         number=\chinese{part}
+    },
+    section={
+        titleformat=\raggedright,
+        name={第,节},
+        number=\chinese{section}
+    },
+    subsection={
+        titleformat=\raggedright,
+        name={第,小节},
+        number=\chinese{subsection}
+    },
+    subsubsection={
+        titleformat=\raggedright,
+        name={},
+        number=\arabic{subsubsection}
     }
 }
+\usepackage{chngcntr}
 \end_preamble
 \options UTF8
 \use_default_options true
@@ -85,7 +101,7 @@
 \rightmargin 3.6cm
 \bottommargin 2.6cm
 \secnumdepth 3
-\tocdepth 3
+\tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
 \is_math_indent 0
@@ -129,6 +145,22 @@ status open
 
 \backslash
 date{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+numberwithin{section}{part}
 \end_layout
 
 \end_inset
@@ -400,22 +432,6 @@ addcontentsline{toc}{section}{摘要}
 作品概述
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-setcounter{section}{0}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Section
 研究背景
 \end_layout
@@ -635,7 +651,7 @@ name "sec:特色描述"
 \end_layout
 
 \begin_layout Subsection
-产品特色
+作品特色
 \end_layout
 
 \begin_layout Standard
@@ -652,7 +668,7 @@ name "sec:特色描述"
 
 \begin_layout Standard
 深度学习数据集是深度学习最为重要的组成部分，我们分析了多种字符之间的相似性，并选定了两种字符集进行多角度拍摄，矫正、切割、制作了大量的数据集进行模型训练，在识别
-屏射后的字体上取得了很高的训练精度。在准确识别字体的基础上，根据测试得到的误码率选择了合适的纠错编码方案，达到了准确恢复水印信息的效果。为了演示字体识别的准确性
+屏摄后的字体上取得了很高的训练精度。在准确识别字体的基础上，根据测试得到的误码率选择了合适的纠错编码方案，达到了准确恢复水印信息的效果。为了演示字体识别的准确性
 ，本作品设定了一个易于处理的文档布局方式，并基于该布局方式实现了文档区域识别和单个文字分割，字体识别准确率达到了92.5%，结合BCH纠错码可以准确恢复水印信息。
 \end_layout
 
@@ -760,22 +776,6 @@ name "sec:特色描述"
 
 \begin_layout Part
 作品设计与实现
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-setcounter{section}{0}
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Section
@@ -2214,18 +2214,6 @@ ch训练出现了过拟合，于是选择了第3次epoch训练出模型进行之
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-setcounter{section}{0}
-\end_layout
-
-\end_inset
-
 
 \end_layout
 
@@ -3272,18 +3260,6 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-setcounter{section}{0}
-\end_layout
-
-\end_inset
-
 
 \end_layout
 
@@ -3355,18 +3331,6 @@ setcounter{section}{0}
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-setcounter{section}{0}
-\end_layout
-
-\end_inset
-
 
 \end_layout
 
