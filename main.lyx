@@ -406,19 +406,27 @@ addcontentsline{toc}{section}{摘要}
 \end_layout
 
 \begin_layout Standard
-随着商业化进程加速，商业机密泄露事件频繁出现，导致泄密溯源技术愈发重要。对泄密溯源技术的需求是随着多媒体的技术发展不断增强的，智能手机的拍摄就对泄密溯源技术带来
-新的挑战。
+随着商业化进程加速，人们越来越重视个人知识产权的保护。但是成果的窃取盗用事件凭凭发生，这严重伤害了作者本身的利益。现在越来越多的盗取者使用拍照的形式盗取他人成果
+，并将盗取的成果发布或转卖以谋取利益。例如在学校，老师使用ppt向大家展示自己的备课成果。台下的盗取者使用手机拍照，将照片发布到互联网平台。又例如在公司内部出现
+泄密者，将某技术方案拍照泄露。在这些情况下，能从盗取者拍摄的照片中提取出作者水印来进行溯源是非常重要的。然而，相比于普通的文档水印并不适用这样的情况。拍照后的失
+真、摩尔纹、抖动等，都极有可能使原本已不易被人发现的水印信息变得不可识别。
 \end_layout
 
 \begin_layout Standard
-针对文档溯源问题，本作品提出在中文文档中进行高不可见性、高鲁棒性文档水印的关键技术，并实现了一个原型系统来演示其效果。水印通过编码不同类型的文字进行嵌入，这就要
-求我们需要拥有至少两种类型的文字进行编码。为了达到视觉上的不可见性，我们选择了两种视觉上不可区分的两类字体，并通过众包技术进行相似度衡量，以确保文字的相似性，从
-而实现编码消息的不可见性。而为了区分这两种字体，同时抵抗屏摄信道对字体识别的干扰，我们设计了一种网络结构并通过对抗训练的方式实现不同字体的高识别率。同时我们还编
-写了微信小程序以更好更完整的展示这一系统。
+针对这种情况，本作品提出在中文文档中进行高不可见性、高鲁棒性、抗屏摄的文档水印技术，水印通过文档中各个文字的字体不同进行嵌入。我们训练了一个分类网络用于区分字体
+，以此提取文档中的水印信息。需要注意的是，选择的字体应该为肉眼不可区分的，否则盗取者可能会发现并去掉水印。我们选择了两种视觉上不可区分的两类字体，并通过众包技术
+进行相似度衡量，以确保文字的相似性，从而实现编码消息的不可见性。
 \end_layout
 
 \begin_layout Standard
-系统演示了算法对屏摄泄密文档的溯源能力，但算法的能力不仅限于屏摄信道，对其他泄密信道也具有很强的溯源能力。
+我们还实现了一个原型系统来演示其效果。系统由两个模块组成：文档生成模块和信息恢复模块。文档生成模块分为水印信息编码和文档生成两个部分。将待水印信息进行BCH编码
+后，根据`0/1'比特串产生含有字体隐写信息的文档。信息恢复模块分为文档矫正、切分字体、识别字体、信息解码四个部分。用户将在盗取者拍摄的照片进行校正，并按续切分
+成单个字体图片。将字体图片输入分类网络得到比特串。将比特串进行BCH解码后就能得到水印信息。
+\end_layout
+
+\begin_layout Standard
+系统演示了算法对屏摄泄密文档的溯源能力，但算法的能力不仅限于屏摄信道，对其他泄密信道也具有很强的溯源能力。例如，文档被打印盗取。我们将文档扫描成图片进行字体识别
+，这样就能得到打印文档中水印信息。对于直接拷贝的电子文档，我们的方法也能很好的适应。直接找到对应格式中标识字体的部分，提取出字体序列翻译为比特串解码即可。
 \end_layout
 
 \begin_layout Standard
@@ -460,7 +468,7 @@ addcontentsline{toc}{section}{摘要}
 \end_layout
 
 \begin_layout Standard
-我们的工作基于Chang et .al
+我们的工作基于Chang等人
 \begin_inset CommandInset citation
 LatexCommand cite
 key "xiao2018fontcode"
@@ -468,25 +476,10 @@ literal "false"
 
 \end_inset
 
-：利用英文字体的细微差别在文档中进行信息隐藏。相比于Chang et .al
-\begin_inset CommandInset citation
-LatexCommand cite
-key "xiao2018fontcode"
-literal "false"
-
-\end_inset
-
-，我们有以下三个方面改进。第一个方面，Chang et .al
-\begin_inset CommandInset citation
-LatexCommand cite
-key "xiao2018fontcode"
-literal "false"
-
-\end_inset
-
-是基于英文字母的字体差别进行的信息隐藏。英文字母只有26个，然而我们进行的中文字水印需要识别的常用字就有3000及以上。这对我们的神经网络识别能力提出了非常高的
-要求，在采集训练集时数据量也会大大增加。第二个方面，中文字体和英文在字形上有很大不同。考虑到中文字体有偏旁部首（整个字体不是连通的），分割取字也变得更有难度。第
-三个方面，我们是对屏幕上显示的文档拍照进行识别。在屏摄过程中产生的失真、摩尔纹、噪点等都会大大影响神经网络模型的识别率。
+提出的利用英文字体的差别进行水印嵌入工作。相比于他们的工作，我们有以下三个方面改进。第一个方面，选择的语言不同。英文字母只有26个，然而我们进行的中文字水印需要
+识别的常用字就有3000及以上。这对我们的神经网络识别能力提出了非常高的要求，在采集训练集时数据量也会大大增加。第二个方面，中文字体和英文在字形上有很大不同。考
+虑到中文字体有偏旁部首（整个字体不是连通的），分割取字也变得更有难度。第三个方面，我们是对屏幕上显示的文档拍照进行识别。在屏摄过程中产生的失真、摩尔纹、噪点等都
+会大大影响神经网络模型的识别率。
 \end_layout
 
 \begin_layout Paragraph
@@ -518,7 +511,7 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-由于拍照会导致原本文档中的信息流失，大部分的水印技术都无法有效的抵抗屏摄信道带来的失真。Jiren et .al
+由于拍照会导致原本文档中的信息流失，大部分的水印技术都无法有效的抵抗屏摄信道带来的失真。Jiren等人
 \begin_inset CommandInset citation
 LatexCommand cite
 key "zhu2018hidden"
@@ -531,7 +524,7 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-之前也有很多识别图片中字体的工作，如Carlos Avilés-Cruz 2015
+之前也有很多识别图片中字体的工作，如Carlos
 \begin_inset CommandInset citation
 LatexCommand cite
 key "aviles2005high"
@@ -539,8 +532,7 @@ literal "false"
 
 \end_inset
 
-——使用静态方法提取字体特征进行识别。进来，神经网络与深度学习技术崛起兴盛，使用神经网络识别字体的技术越来越多，而且效果都非常好。Chen et
- .al
+等人提出的使用静态方法提取字体特征进行识别。进来，神经网络与深度学习技术崛起兴盛，使用神经网络识别字体的技术越来越多。Chen等人
 \begin_inset CommandInset citation
 LatexCommand cite
 key "chen2014large"
@@ -548,7 +540,7 @@ literal "false"
 
 \end_inset
 
-中就提出了一种规模可变的监督学习方法。随后Wang et .al
+就提出了一种规模可变的监督学习方法。随后Wang等人
 \begin_inset CommandInset citation
 LatexCommand cite
 key "wang2015deepfont"
@@ -556,8 +548,7 @@ literal "false"
 
 \end_inset
 
-提出使用CNN识别字体的方案。我们的识别方法也运用了神经网络，并将CNN作为核心的一环。最终搭建的网络模型使用了一种效果非常好的图片分类模型 ——He
- et .al
+提出使用CNN识别字体的方案。我们的识别方法也运用了深度学习技术。基于ResNet18
 \begin_inset CommandInset citation
 LatexCommand cite
 key "he2016deep"
@@ -565,7 +556,7 @@ literal "false"
 
 \end_inset
 
-。我们调整了模型的部分细节和参数以适应于整个任务。
+，我们调整了模型的部分细节和参数以适应于整个任务。
 \end_layout
 
 \begin_layout Paragraph
@@ -578,7 +569,7 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-第一种方案是cover text generation CTG，wayner et .al
+第一种方案是wayner等人
 \begin_inset CommandInset citation
 LatexCommand cite
 key "wayner1992mimic"
@@ -594,11 +585,12 @@ literal "false"
 
 \end_inset
 
-。这种方案生成一种语法和句法上非常自然的文档，在词句之中隐藏信息。这种方案的缺点也是非常明显的——它不能给定文档添加水印。
+提出的cover text generation CTG。这种方案生成一种语法和句法上非常自然的文档，在词句之中隐藏信息。这种方案的缺点也是非常明显的——它不能
+给定文档添加水印。
 \end_layout
 
 \begin_layout Standard
-第二种方案是黄兴 2013
+第二种方案是黄兴等人
 \begin_inset CommandInset citation
 LatexCommand cite
 key "黄兴2013抗打印扫描的文本数字水印技术研究"
@@ -606,8 +598,8 @@ literal "false"
 
 \end_inset
 
-，将字体边缘的像素翻转来进行编码。这种方案的缺点在于信息流失的可能性太大，特别是在屏摄后能识别出水印信息的概率非常小。而且，如果采用这种方法，对所有格式文档适应
-的成本也非常高。
+的工作，将字体边缘的像素翻转来进行编码。这种方案的缺点在于信息流失的可能性太大，特别是在屏摄后能识别出水印信息的概率非常小。而且，如果采用这种方法，对所有格式文
+档适应的成本也非常高。
 \end_layout
 
 \begin_layout Standard
@@ -2232,7 +2224,7 @@ noprefix "false"
 
 \end_inset
 
-中的一段话作为原始文本，'ciscn!'作为待水印信息。将原始文本和给定信息输入文档生成模块，得到的文档如下图所示：
+中的一段话作为原始文本，`ciscn!'作为待水印信息。将原始文本和给定信息输入文档生成模块，得到的文档如下图所示：
 \end_layout
 
 \begin_layout Standard
@@ -3078,7 +3070,7 @@ o_6]%(
 
 \begin_layout Standard
 我们的fontDecode小程序中加入了4个试用者，分别是A、B、C、D。让4位试用者使用MI 8、Huawei mate20、360 N6、vivoX7对之前
-产生的70张图片拍照上传至服务器提取信息。使用过程和系统展示
+产生的70张图片拍照，上传至服务器提取信息。使用过程和系统展示
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:系统展示"
@@ -3981,16 +3973,14 @@ status open
 \end_layout
 
 \begin_layout Standard
-<<<<<<< HEAD
-=======
-
+<<<<<<< HEAD=======
 \end_layout
 
 \begin_layout Standard
->>>>>>> 304ea7104987dce05a05c3615b415849e2d7d14f
-多媒体技术的发展对泄密溯源技术带来新的挑战。随着智能手机的普及，各类重要的机密文件的泄露事件出现频繁。目前各种文件几乎都以电子文档的形式存储，文档显示在电子屏幕
-上时，信息窃取者通过手机拍摄照片获取文档的信息变得十分容易，而这种文档泄密事件的溯源却相当困难。屏摄后的文档图片会出现大量的摩尔纹、噪点、失真等情况，传统的文档
-水印技术无法在屏摄处理后恢复原始的水印信息。因此需要能够抗屏摄的文档水印技术。
+>>>>>>> 304ea7104987dce05a05c3615b415849e2d7d14f多媒体技术的发展对泄密溯源技术带来新的挑战。随着智能手机的普及，
+各类重要的机密文件的泄露事件出现频繁。目前各种文件几乎都以电子文档的形式存储，文档显示在电子屏幕上时，信息窃取者通过手机拍摄照片获取文档的信息变得十分容易，而这
+种文档泄密事件的溯源却相当困难。屏摄后的文档图片会出现大量的摩尔纹、噪点、失真等情况，传统的文档水印技术无法在屏摄处理后恢复原始的水印信息。因此需要能够抗屏摄的
+文档水印技术。
 \end_layout
 
 \begin_layout Standard
