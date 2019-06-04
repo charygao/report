@@ -14,8 +14,24 @@
         titleformat=\raggedright,
         name={第,章},
         number=\chinese{part}
+    },
+    section={
+        titleformat=\raggedright,
+        name={第,节},
+        number=\chinese{section}
+    },
+    subsection={
+        titleformat=\raggedright,
+        name={第,小节},
+        number=\chinese{subsection}
+    },
+    subsubsection={
+        titleformat=\raggedright,
+        name={},
+        number=\arabic{subsubsection}
     }
 }
+\usepackage{chngcntr}
 \end_preamble
 \options UTF8
 \use_default_options true
@@ -85,7 +101,7 @@
 \rightmargin 3.6cm
 \bottommargin 2.6cm
 \secnumdepth 3
-\tocdepth 3
+\tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
 \is_math_indent 0
@@ -129,6 +145,22 @@ status open
 
 \backslash
 date{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+numberwithin{section}{part}
 \end_layout
 
 \end_inset
@@ -619,7 +651,7 @@ name "sec:特色描述"
 \end_layout
 
 \begin_layout Subsection
-产品特色
+作品特色
 \end_layout
 
 \begin_layout Standard
@@ -636,7 +668,7 @@ name "sec:特色描述"
 
 \begin_layout Standard
 深度学习数据集是深度学习最为重要的组成部分，我们分析了多种字符之间的相似性，并选定了两种字符集进行多角度拍摄，矫正、切割、制作了大量的数据集进行模型训练，在识别
-屏射后的字体上取得了很高的训练精度。在准确识别字体的基础上，根据测试得到的误码率选择了合适的纠错编码方案，达到了准确恢复水印信息的效果。为了演示字体识别的准确性
+屏摄后的字体上取得了很高的训练精度。在准确识别字体的基础上，根据测试得到的误码率选择了合适的纠错编码方案，达到了准确恢复水印信息的效果。为了演示字体识别的准确性
 ，本作品设定了一个易于处理的文档布局方式，并基于该布局方式实现了文档区域识别和单个文字分割，字体识别准确率达到了92.5%，结合BCH纠错码可以准确恢复水印信息。
 \end_layout
 
@@ -3878,18 +3910,6 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-setcounter{section}{0}
-\end_layout
-
-\end_inset
-
 
 \end_layout
 
@@ -3961,6 +3981,13 @@ setcounter{section}{0}
 \end_layout
 
 \begin_layout Standard
+<<<<<<< HEAD
+=======
+
+\end_layout
+
+\begin_layout Standard
+>>>>>>> 304ea7104987dce05a05c3615b415849e2d7d14f
 多媒体技术的发展对泄密溯源技术带来新的挑战。随着智能手机的普及，各类重要的机密文件的泄露事件出现频繁。目前各种文件几乎都以电子文档的形式存储，文档显示在电子屏幕
 上时，信息窃取者通过手机拍摄照片获取文档的信息变得十分容易，而这种文档泄密事件的溯源却相当困难。屏摄后的文档图片会出现大量的摩尔纹、噪点、失真等情况，传统的文档
 水印技术无法在屏摄处理后恢复原始的水印信息。因此需要能够抗屏摄的文档水印技术。
