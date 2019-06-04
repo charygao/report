@@ -11,7 +11,6 @@
 \usepackage{hyperref}
 \ctexset{
     part={
-        titleformat=\raggedright,
         name={第,章},
         number=\chinese{part}
     },
@@ -40,8 +39,8 @@
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman "default" "宋体"
-\font_sans "default" "宋体"
+\font_roman "default" "Songti TC"
+\font_sans "default" "Songti TC"
 \font_typewriter "default" "default"
 \font_math "auto" "auto"
 \font_default_family default
@@ -406,19 +405,27 @@ addcontentsline{toc}{section}{摘要}
 \end_layout
 
 \begin_layout Standard
-随着商业化进程加速，商业机密泄露事件频繁出现，导致泄密溯源技术愈发重要。对泄密溯源技术的需求是随着多媒体的技术发展不断增强的，智能手机的拍摄就对泄密溯源技术带来
-新的挑战。
+随着商业化进程加速，人们越来越重视个人知识产权的保护。但是成果的窃取盗用事件凭凭发生，这严重伤害了作者本身的利益。现在越来越多的盗取者使用拍照的形式盗取他人成果
+，并将盗取的成果发布或转卖以谋取利益。例如在学校，老师使用ppt向大家展示自己的备课成果。台下的盗取者使用手机拍照，将照片发布到互联网平台。又例如在公司内部出现
+泄密者，将某技术方案拍照泄露。在这些情况下，能从盗取者拍摄的照片中提取出作者水印来进行溯源是非常重要的。然而，相比于普通的文档水印并不适用这样的情况。拍照后的失
+真、摩尔纹、抖动等，都极有可能使原本已不易被人发现的水印信息变得不可识别。
 \end_layout
 
 \begin_layout Standard
-针对文档溯源问题，本作品提出在中文文档中进行高不可见性、高鲁棒性文档水印的关键技术，并实现了一个原型系统来演示其效果。水印通过编码不同类型的文字进行嵌入，这就要
-求我们需要拥有至少两种类型的文字进行编码。为了达到视觉上的不可见性，我们选择了两种视觉上不可区分的两类字体，并通过众包技术进行相似度衡量，以确保文字的相似性，从
-而实现编码消息的不可见性。而为了区分这两种字体，同时抵抗屏摄信道对字体识别的干扰，我们设计了一种网络结构并通过对抗训练的方式实现不同字体的高识别率。同时我们还编
-写了微信小程序以更好更完整的展示这一系统。
+针对这种情况，本作品提出在中文文档中进行高不可见性、高鲁棒性、抗屏摄的文档水印技术，水印通过文档中各个文字的字体不同进行嵌入。我们训练了一个分类网络用于区分字体
+，以此提取文档中的水印信息。需要注意的是，选择的字体应该为肉眼不可区分的，否则盗取者可能会发现并去掉水印。我们选择了两种视觉上不可区分的两类字体，并通过众包技术
+进行相似度衡量，以确保文字的相似性，从而实现编码消息的不可见性。
 \end_layout
 
 \begin_layout Standard
-系统演示了算法对屏摄泄密文档的溯源能力，但算法的能力不仅限于屏摄信道，对其他泄密信道也具有很强的溯源能力。
+我们还实现了一个原型系统来演示其效果。系统由两个模块组成：文档生成模块和信息恢复模块。文档生成模块分为水印信息编码和文档生成两个部分。将待水印信息进行BCH编码
+后，根据`0/1'比特串产生含有字体隐写信息的文档。信息恢复模块分为文档矫正、切分字体、识别字体、信息解码四个部分。用户将在盗取者拍摄的照片进行校正，并按续切分
+成单个字体图片。将字体图片输入分类网络得到比特串。将比特串进行BCH解码后就能得到水印信息。
+\end_layout
+
+\begin_layout Standard
+系统演示了算法对屏摄泄密文档的溯源能力，但算法的能力不仅限于屏摄信道，对其他泄密信道也具有很强的溯源能力。例如，文档被打印盗取。我们将文档扫描成图片进行字体识别
+，这样就能得到打印文档中水印信息。对于直接拷贝的电子文档，我们的方法也能很好的适应。直接找到对应格式中标识字体的部分，提取出字体序列翻译为比特串解码即可。
 \end_layout
 
 \begin_layout Standard
@@ -460,7 +467,7 @@ addcontentsline{toc}{section}{摘要}
 \end_layout
 
 \begin_layout Standard
-我们的工作基于Chang et .al
+我们的工作基于Chang等人
 \begin_inset CommandInset citation
 LatexCommand cite
 key "xiao2018fontcode"
@@ -468,25 +475,10 @@ literal "false"
 
 \end_inset
 
-：利用英文字体的细微差别在文档中进行信息隐藏。相比于Chang et .al
-\begin_inset CommandInset citation
-LatexCommand cite
-key "xiao2018fontcode"
-literal "false"
-
-\end_inset
-
-，我们有以下三个方面改进。第一个方面，Chang et .al
-\begin_inset CommandInset citation
-LatexCommand cite
-key "xiao2018fontcode"
-literal "false"
-
-\end_inset
-
-是基于英文字母的字体差别进行的信息隐藏。英文字母只有26个，然而我们进行的中文字水印需要识别的常用字就有3000及以上。这对我们的神经网络识别能力提出了非常高的
-要求，在采集训练集时数据量也会大大增加。第二个方面，中文字体和英文在字形上有很大不同。考虑到中文字体有偏旁部首（整个字体不是连通的），分割取字也变得更有难度。第
-三个方面，我们是对屏幕上显示的文档拍照进行识别。在屏摄过程中产生的失真、摩尔纹、噪点等都会大大影响神经网络模型的识别率。
+提出的利用英文字体的差别进行水印嵌入工作。相比于他们的工作，我们有以下三个方面改进。第一个方面，选择的语言不同。英文字母只有26个，然而我们进行的中文字水印需要
+识别的常用字就有3000及以上。这对我们的神经网络识别能力提出了非常高的要求，在采集训练集时数据量也会大大增加。第二个方面，中文字体和英文在字形上有很大不同。考
+虑到中文字体有偏旁部首（整个字体不是连通的），分割取字也变得更有难度。第三个方面，我们是对屏幕上显示的文档拍照进行识别。在屏摄过程中产生的失真、摩尔纹、噪点等都
+会大大影响神经网络模型的识别率。
 \end_layout
 
 \begin_layout Paragraph
@@ -518,7 +510,7 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-由于拍照会导致原本文档中的信息流失，大部分的水印技术都无法有效的抵抗屏摄信道带来的失真。Jiren et .al
+由于拍照会导致原本文档中的信息流失，大部分的水印技术都无法有效的抵抗屏摄信道带来的失真。Jiren等人
 \begin_inset CommandInset citation
 LatexCommand cite
 key "zhu2018hidden"
@@ -531,7 +523,7 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-之前也有很多识别图片中字体的工作，如Carlos Avilés-Cruz 2015
+之前也有很多识别图片中字体的工作，如Carlos
 \begin_inset CommandInset citation
 LatexCommand cite
 key "aviles2005high"
@@ -539,8 +531,7 @@ literal "false"
 
 \end_inset
 
-——使用静态方法提取字体特征进行识别。进来，神经网络与深度学习技术崛起兴盛，使用神经网络识别字体的技术越来越多，而且效果都非常好。Chen et
- .al
+等人提出的使用静态方法提取字体特征进行识别。进来，神经网络与深度学习技术崛起兴盛，使用神经网络识别字体的技术越来越多。Chen等人
 \begin_inset CommandInset citation
 LatexCommand cite
 key "chen2014large"
@@ -548,7 +539,7 @@ literal "false"
 
 \end_inset
 
-中就提出了一种规模可变的监督学习方法。随后Wang et .al
+就提出了一种规模可变的监督学习方法。随后Wang等人
 \begin_inset CommandInset citation
 LatexCommand cite
 key "wang2015deepfont"
@@ -556,8 +547,7 @@ literal "false"
 
 \end_inset
 
-提出使用CNN识别字体的方案。我们的识别方法也运用了神经网络，并将CNN作为核心的一环。最终搭建的网络模型使用了一种效果非常好的图片分类模型 ——He
- et .al
+提出使用CNN识别字体的方案。我们的识别方法也运用了深度学习技术。基于ResNet18
 \begin_inset CommandInset citation
 LatexCommand cite
 key "he2016deep"
@@ -565,7 +555,7 @@ literal "false"
 
 \end_inset
 
-。我们调整了模型的部分细节和参数以适应于整个任务。
+，我们调整了模型的部分细节和参数以适应于整个任务。
 \end_layout
 
 \begin_layout Paragraph
@@ -578,7 +568,7 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-第一种方案是cover text generation CTG，wayner et .al
+第一种方案是wayner等人
 \begin_inset CommandInset citation
 LatexCommand cite
 key "wayner1992mimic"
@@ -594,11 +584,12 @@ literal "false"
 
 \end_inset
 
-。这种方案生成一种语法和句法上非常自然的文档，在词句之中隐藏信息。这种方案的缺点也是非常明显的——它不能给定文档添加水印。
+提出的cover text generation CTG。这种方案生成一种语法和句法上非常自然的文档，在词句之中隐藏信息。这种方案的缺点也是非常明显的——它不能
+给定文档添加水印。
 \end_layout
 
 \begin_layout Standard
-第二种方案是黄兴 2013
+第二种方案是黄兴等人
 \begin_inset CommandInset citation
 LatexCommand cite
 key "黄兴2013抗打印扫描的文本数字水印技术研究"
@@ -606,8 +597,8 @@ literal "false"
 
 \end_inset
 
-，将字体边缘的像素翻转来进行编码。这种方案的缺点在于信息流失的可能性太大，特别是在屏摄后能识别出水印信息的概率非常小。而且，如果采用这种方法，对所有格式文档适应
-的成本也非常高。
+的工作，将字体边缘的像素翻转来进行编码。这种方案的缺点在于信息流失的可能性太大，特别是在屏摄后能识别出水印信息的概率非常小。而且，如果采用这种方法，对所有格式文
+档适应的成本也非常高。
 \end_layout
 
 \begin_layout Standard
@@ -795,7 +786,7 @@ name "sec:特色描述"
 \end_layout
 
 \begin_layout Standard
-当用户需要发布一份带水印的文档时，首先将文档原文和水印信息提交至本系统，由本系统生成带有水印的文档，然后用户显示在屏幕上，进行后续的处理和使用。
+当用户需要发布一份带水印的文档时，首先将文档原文和水印信息提交至本系统，由本系统生成带有水印的文档，然后用户获取该文档，进行后续的处理和使用(如展示在屏幕上)。
 \end_layout
 
 \begin_layout Standard
@@ -808,7 +799,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/doc-pub-steps.bmp
+	filename figures/doc-pub-steps.png
 	width 14cm
 
 \end_inset
@@ -2401,6 +2392,332 @@ status collapsed
 ch训练出现了过拟合，于是选择了第3次epoch训练出模型进行之后的测试与使用。
 \end_layout
 
+\begin_layout Section
+系统展示
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:系统展示"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+下面展示某一次系统的使用演示：
+\end_layout
+
+\begin_layout Subsection*
+获得文档生成
+\end_layout
+
+\begin_layout Standard
+我们采用
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:特色描述"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+中的一段话作为原始文本，`ciscn!'作为待水印信息。将原始文本和给定信息输入文档生成模块，得到的文档如下图所示：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/system-test/generate-img.png
+	lyxscale 50
+	width 9cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+带有水印的文档
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+识别文档照片中的隐藏信息
+\end_layout
+
+\begin_layout Standard
+打开微信搜索fontDecode小程序，点击中间按钮，你可以选择上传相册中的照片或者临时拍照上传。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/system-test/wx-index.png
+	lyxscale 10
+	height 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+主页
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{}
+\length 4cm
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/system-test/cut-image.jpg
+	lyxscale 10
+	height 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+裁减页
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+fontDecode小程序
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这里我们选择演示拍照上传。打开系统相机后，拍摄屏幕上含有水印的文档（模拟现实拍照场景）。之后，旋转缩放并切割拍到的照片。点击下方按钮将处理后的图片上传至服务器。
+\end_layout
+
+\begin_layout Standard
+服务器收到上传图片后，先进行定位、畸变矫正、切割。将切割后的图片规范到224 x 224并进行归一化处理，依次输入进网络。将网络输出的比特串进行BCH解码，即能
+得到图片中的隐藏信息。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/system-test/bi....jpg
+	lyxscale 50
+	width 30line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+服务器畸变矫正后的图像
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{}
+\length 2cm
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/system-test/cut.png
+	lyxscale 50
+	width 25line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+切割后的图像
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+服务器端处理
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+之后服务器会将解码得到的信息发回给客户端，用户成功获得隐藏信息。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/system-test/decode-success.jpg
+	lyxscale 20
+	width 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+溯源结果
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
@@ -2413,12 +2730,85 @@ ch训练出现了过拟合，于是选择了第3次epoch训练出模型进行之
 \end_layout
 
 \begin_layout Standard
+本作品可以使用任意多种类的字体作为信息的载体，在本次实现和测试中，为了突出核心想法和测试信息恢复的准确性，选择了两种非常相近的字体。其中一种为华文仿宋，另一种为
+微软简仿宋。
+\end_layout
 
+\begin_layout Section
+测试环境
+\end_layout
+
+\begin_layout Subsection
+硬件环境
+\end_layout
+
+\begin_layout Paragraph*
+移动端
 \end_layout
 
 \begin_layout Standard
-本作品可以使用任意多种类的字体作为信息的载体，在本次实现和测试中，为了突出核心想法和测试信息恢复的准确性，选择了两种非常相近的字体。其中一种为华文仿宋，另一种为
-微软简仿宋。
+考虑到微信小程序已具备各手机平台适应性，我们仅选用MI 8、Huawei mate20、360 N6、vivoX7作为移动端测试平台，测试其在微信小程序内打开系
+统相机、上传图片、裁剪图片和与服务器使用https协议通信的可能性。
+\end_layout
+
+\begin_layout Standard
+不同手机自带的摄像头在性能方面也有不同，如像素值、对焦能力等。因此我们在采集数据时，混合了四款手机拍照得到的照片进行测试训练。增加神经网络识别不同手机拍摄的图片
+的能力。
+\end_layout
+
+\begin_layout Paragraph
+显示屏
+\end_layout
+
+\begin_layout Standard
+考虑不同显示屏的分辨率、色差等会对图片产生影响，我们在HP Pavilion 15-au147tx、mac air13.3-inch (1440
+ x 900)、mac pro13.3-inch (2560 x 1600)均进行了采样，并在这些显示屏上拍取最终编码后的图片进行解码测试。
+\end_layout
+
+\begin_layout Paragraph
+服务器端
+\end_layout
+
+\begin_layout Standard
+服务器端配置为Ubuntu 16.04（64位、1核、内存2G）。服务使用nginx+gunicorn+flask进行部署环境。经测试，该环境足够为小量用户提供可
+靠服务。
+\end_layout
+
+\begin_layout Subsection
+自然环境
+\end_layout
+
+\begin_layout Paragraph*
+光照环境
+\end_layout
+
+\begin_layout Standard
+光照条件不同对拍照背景颜色有很大影响。在测试网络识别能力的过程中，我们添加了不同光照条件下拍摄的测试图片，测试网络能否去除光照引起的背景颜色不同的影响。
+\end_layout
+
+\begin_layout Paragraph
+拍照距离
+\end_layout
+
+\begin_layout Standard
+由于距离上的差别，拍照所得到的图像在清晰度、摩尔纹等方面有很大的不同。为了测试我们的字体识别网络是否具有处理摩尔纹和清晰度的能力，我们在拍取测试图片时时随机选取
+拍照距离。需要注意的是，选取的距离不应过大，使得图片中文字无法识别。也不应过小，使得对整张图片截取不完全，从而无法解码。
+\end_layout
+
+\begin_layout Paragraph*
+旋转倾斜角度
+\end_layout
+
+\begin_layout Standard
+为模拟现实情况下拍照环境，我们在拍照时将手机随机进行了小幅度旋转倾斜，以此测试文档分割前图片畸变矫正算法的鲁棒性。
+\end_layout
+
+\begin_layout Paragraph
+抖动
+\end_layout
+
+\begin_layout Standard
+测试数据中包含手持拍摄和三脚架固定拍摄数据，以检测网络对模糊图像的识别率。需要注意的是，抖动程度不应太大导致图片文字模糊不清。
 \end_layout
 
 \begin_layout Section
@@ -2427,6 +2817,606 @@ ch训练出现了过拟合，于是选择了第3次epoch训练出模型进行之
 
 \begin_layout Standard
 分单元分别对字体类型的不可见性、屏摄图片分割准确性和水印信息嵌入与提取进行测试，并对整体流程进行完整测试与分析。
+\end_layout
+
+\begin_layout Subsection
+功能测试
+\end_layout
+
+\begin_layout Standard
+我们模拟了数次完整的使用流程，包括文档生成模块测试和信息恢复模块测试。先测试使用给定原始文本和水印内容，使用文档生成模块产生带有水印的文档。再对该文档使用客户端
+拍照上传，服务器端进行定位、畸变矫正、字符分割处理后，将字按序输入网络，将输出的比特穿进行BCH解码，就能得到水印信息。下面展示某一次的详细使用流程：
+\end_layout
+
+\begin_layout Subsubsection
+文档生成模块测试
+\end_layout
+
+\begin_layout Standard
+我们随机生成20个6字符长的英文字符串。为这20个字符串分别生成不同个数的文档，各文档均能正常生成。各字符串以及对应的文档个数如下:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="5">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+y)PaE*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4@P
+\backslash
+Om
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+&Xo$
+\backslash
+R
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A[F~Rr
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+p'>wSf
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+gIx%c>
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+w^:&`X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+OMqIGc
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+!
+\backslash
+>hrI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+S5_h|[
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+bnuRXx
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+T}s
+\backslash
+;$
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+KZ!#v5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+S6Uq7&
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MNZY%S
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+"f:<t@
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+}pOUxu
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+g:aZ!w
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\backslash
+(Kp5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+o_6]%(
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+水印信息及对应文档数
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+信息恢复模块测试
+\end_layout
+
+\begin_layout Standard
+我们的fontDecode小程序中加入了4个试用者，分别是A、B、C、D。让4位试用者使用MI 8、Huawei mate20、360 N6、vivoX7对之前
+产生的70张图片拍照，上传至服务器提取信息。使用过程和系统展示
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:系统展示"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+中相同。结果如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="5">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A（Huawei mate20）
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B（MI 8）
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+C（360 N6）
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+D（vivo X7）
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+成功恢复文档数
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+67
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+64
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+60
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+信息恢复效果
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+我们推测还原数目不同与拍摄时抖动程度与手机像素值有关。
 \end_layout
 
 \begin_layout Subsection
@@ -2442,8 +3432,8 @@ ch训练出现了过拟合，于是选择了第3次epoch训练出模型进行之
 \end_layout
 
 \begin_layout Standard
-作为文档水印，两种编码字体不能被人眼区分是非常重要的。为了确定我们选定字体的差异是否是难以察觉的，我们使用了问卷调查的形式。若认为两种字体人肉眼不可区分的人数比
-例到达特定阈值，我们便可以认为选择的两种字体是可以用来编码的。
+作为文档水印，两种编码字体不能被人眼区分是非常重要的。为了确定我们选定字体的差异是否是难以察觉的，我们使用了主观评测的形式。若两种字体的平均相像评分到达特定阈值
+，我们便可以认为选择的两种字体是可以用来编码的。
 \end_layout
 
 \begin_layout Paragraph*
@@ -2451,16 +3441,16 @@ ch训练出现了过拟合，于是选择了第3次epoch训练出模型进行之
 \end_layout
 
 \begin_layout Standard
-我们选定90%作为阈值，并随机抽取两个相同文字让问卷参与者进行辨别（如左图所示）。并且，为了防止参与者中有恶意用户，我们设置了四组验证题（如右图所示）。正常问题
-中的两个文字分别为我们选定的两种字体，验证问题中的两个文字则为相同字体。若参与者在四个验证问题中有两个问题回答错误，我们则认为他是恶意用户，该用户的回答不计入结
-果计算。
+我们选定4分作为阈值，并随机抽取两个相同文字让问卷参与者进行辨别（如左图所示）。并且，为了防止参与者中有恶意用户，我们设置了四组验证题（如右图所示）。正常问题中
+的两个文字分别为我们选定的两种字体，验证问题中的两个文字则为相同字体。若参与者在四个验证问题中有两个问题回答的评分低于3.5分，我们则认为他是恶意用户，该用户的回
+答不计入结果计算。
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -2484,7 +3474,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-正常问题，
+正常问题
 \end_layout
 
 \end_inset
@@ -2524,7 +3514,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-验证问题。
+验证问题
 \end_layout
 
 \end_inset
@@ -2568,19 +3558,19 @@ status open
 \end_layout
 
 \begin_layout Standard
-我们对每个问题的结果（前十题为正常题，后四题为验证题）和去除恶意用户后的总体结果分别进行了统计，统计结果如下图所示。总体上，我们选定的两种字体不可区分的人数比例
-达到了92.5%，超过了设定的阈值。
+我们对每个问题的结果（前十题为正常题，后四题为验证题）和去除恶意用户后的总体结果分别进行了统计，统计结果如下图所示。总体上，我们选定的两种字体的平均相像评分达到
+了4.097，超过了设定的阈值。
+\end_layout
+
+\begin_layout Standard
+实际使用过程中，几乎不可能出现两个不同字体的相同文字相邻出现的情况。因此我们的字体不可区分性将表现的更为出色。
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
-
-\begin_layout Plain Layout
-
-\end_layout
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -2605,7 +3595,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-各题结果。
+各题平均分数
 \end_layout
 
 \end_inset
@@ -2646,7 +3636,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-总体结果
+各分数段分布
 \end_layout
 
 \end_inset
@@ -2667,7 +3657,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-问卷调查结果。
+问卷调查结果
 \end_layout
 
 \end_inset
@@ -2797,7 +3787,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-屏摄切割后的文字图像示例。
+屏摄切割后的文字图像示例
 \end_layout
 
 \end_inset
@@ -2873,7 +3863,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-分割前后图像示例。
+分割前后图像示例
 \end_layout
 
 \end_inset
@@ -2951,7 +3941,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-文档解码正确率结果，
+文档解码正确率结果
 \end_layout
 
 \end_inset
@@ -3098,355 +4088,6 @@ status open
 所有文档中只有两份文档识别正确率为88%，无法被正确BCH解码。我们的系统正确提取隐写信息的概率为93.75%
 \end_layout
 
-\begin_layout Subsection
-系统测试
-\end_layout
-
-\begin_layout Standard
-我们模拟了数次完整的使用流程。先使用给定原始文本和水印内容，使用文档生成模块产生带有水印的文档。再对该文档使用客户端拍照上传，服务器端进行定位、畸变矫正、字符分
-割处理后，将字按序输入网络，将输出的比特穿进行BCH解码，就能得到水印信息。下面展示某一次的详细使用流程：
-\end_layout
-
-\begin_layout Subsubsection
-文档生成模块测试
-\end_layout
-
-\begin_layout Standard
-我们采用
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:特色描述"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-中的一段话作为原始文本，'ciscn!'作为待水印信息。将原始文本和给定信息输入文档生成模块，得到的文档如下图所示：
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename figures/system-test/generate-img.png
-	lyxscale 50
-	width 9cm
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-带有水印的文档。
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-信息恢复模块测试
-\end_layout
-
-\begin_layout Standard
-打开微信搜索fontDecode小程序，点击中间按钮，你可以选择上传相册中的照片或者临时拍照上传。
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename figures/system-test/wx-index.jpg
-	lyxscale 10
-	height 7cm
-
-\end_inset
-
-
-\begin_inset space \hspace*{}
-\length 4cm
-\end_inset
-
-
-\begin_inset Graphics
-	filename figures/system-test/cut-image.jpg
-	lyxscale 10
-	height 7cm
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-fontDecode小程序主页 与 裁减页。
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-这里我们选择演示拍照上传。打开系统相机后，拍摄屏幕上含有水印的文档（模拟现实拍照场景）。之后，旋转缩放并切割拍到的照片。点击下方按钮将处理后的图片上传至服务器。
-\end_layout
-
-\begin_layout Standard
-服务器收到上传图片后，先进行定位、畸变矫正、切割。将切割后的图片规范到224 x 224并进行归一化处理，依次输入进网络。将网络输出的比特串进行BCH解码，即能
-得到图片中的隐藏信息。
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename figures/system-test/bi....jpg
-	lyxscale 50
-	width 30line%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-服务器畸变矫正后的图像。
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hspace*{}
-\length 2cm
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename figures/system-test/cut.png
-	lyxscale 50
-	width 25line%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-切割后的图像。
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-服务器端处理。
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-之后服务器会将解码得到的信息发回给客户端，用户成功获得隐藏信息。
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename figures/system-test/decode-success.jpg
-	lyxscale 20
-	width 6cm
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-解码成功截图。
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-测试环境
-\end_layout
-
-\begin_layout Subsection
-硬件环境
-\end_layout
-
-\begin_layout Paragraph*
-移动端
-\end_layout
-
-\begin_layout Standard
-考虑到微信小程序已具备各手机平台适应性，我们仅选用MI 8、Huawei mate20、360 N6、vivoX7作为移动端测试平台，测试其在微信小程序内打开系
-统相机、上传图片、裁剪图片和与服务器使用https协议通信的可能性。
-\end_layout
-
-\begin_layout Standard
-不同手机自带的摄像头在性能方面也有不同，如像素值、对焦能力等。因此我们在采集数据时，混合了四款手机拍照得到的照片进行测试训练。增加神经网络识别不同手机拍摄的图片
-的能力。
-\end_layout
-
-\begin_layout Paragraph
-显示屏
-\end_layout
-
-\begin_layout Standard
-考虑不同显示屏的分辨率、色差等会对图片产生影响，我们在HP Pavilion 15-au147tx、mac air13.3-inch (1440
- x 900)、mac pro13.3-inch (2560 x 1600)均进行了采样，并在这些显示屏上拍取最终编码后的图片进行解码测试。
-\end_layout
-
-\begin_layout Paragraph
-服务器端
-\end_layout
-
-\begin_layout Standard
-服务器端配置为Ubuntu 16.04（64位、1核、内存2G）。服务使用nginx+gunicorn+flask进行部署环境。经测试，该环境足够为小量用户提供可
-靠服务。
-\end_layout
-
-\begin_layout Subsection
-自然环境
-\end_layout
-
-\begin_layout Paragraph*
-光照环境
-\end_layout
-
-\begin_layout Standard
-光照条件不同对拍照背景颜色有很大影响。在训练网络过程中我们添加了不同光照条件下拍摄的测试集，测试网络对背景颜色的能力。
-\end_layout
-
-\begin_layout Paragraph
-拍照距离
-\end_layout
-
-\begin_layout Standard
-由于距离上的差别，拍照所得到的图像在清晰度、摩尔纹等方面有很大的不同。为了测试我们的字体识别网络是否具有处理摩尔纹和清晰度的能力，我们在拍照时随机选取拍照距离。
-需要注意的是，选取的距离不应过大，使得图片中文字无法识别。也不应过小，使得对整张图片截取不完全，从而无法解码。
-\end_layout
-
-\begin_layout Paragraph*
-旋转倾斜角度
-\end_layout
-
-\begin_layout Standard
-为模拟现实情况下拍照环境，我们在拍照时将手机随机进行了小幅度旋转倾斜，以此测试文档分割前图片畸变矫正算法的鲁棒性。
-\end_layout
-
-\begin_layout Paragraph
-抖动
-\end_layout
-
-\begin_layout Standard
-测试数据中包含手持拍摄和三脚架固定拍摄数据，以检测网络对模糊图像的识别率。需要注意的是，抖动程度不应太大导致图片文字模糊不清。
-\end_layout
-
 \begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
@@ -3527,10 +4168,6 @@ status open
 
 \begin_layout Part
 总结
-\end_layout
-
-\begin_layout Standard
-
 \end_layout
 
 \begin_layout Standard
