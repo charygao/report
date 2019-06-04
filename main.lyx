@@ -11,7 +11,6 @@
 \usepackage{hyperref}
 \ctexset{
     part={
-        titleformat=\raggedright,
         name={第,章},
         number=\chinese{part}
     },
@@ -787,7 +786,7 @@ name "sec:特色描述"
 \end_layout
 
 \begin_layout Standard
-当用户需要发布一份带水印的文档时，首先将文档原文和水印信息提交至本系统，由本系统生成带有水印的文档，然后用户获取该文档，进行后续的处理和使用。
+当用户需要发布一份带水印的文档时，首先将文档原文和水印信息提交至本系统，由本系统生成带有水印的文档，然后用户获取该文档，进行后续的处理和使用(如展示在屏幕上)。
 \end_layout
 
 \begin_layout Standard
@@ -800,7 +799,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/doc-pub-steps.bmp
+	filename figures/doc-pub-steps.png
 	width 14cm
 
 \end_inset
