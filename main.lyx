@@ -795,7 +795,7 @@ name "sec:特色描述"
 \end_layout
 
 \begin_layout Standard
-当用户需要发布一份带水印的文档时，首先将文档原文和水印信息提交至本系统，由本系统生成带有水印的文档，然后用户获取该文档，进行后续的处理和使用。
+当用户需要发布一份带水印的文档时，首先将文档原文和水印信息提交至本系统，由本系统生成带有水印的文档，然后用户显示在屏幕上，进行后续的处理和使用。
 \end_layout
 
 \begin_layout Standard
@@ -817,7 +817,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-文档发布流程图。
+文档发布流程图
 \end_layout
 
 \end_inset
@@ -974,8 +974,8 @@ status open
 \end_layout
 
 \begin_layout Standard
-用户选择需要嵌入的信息(url)和嵌入的文档内容。以二进制为例，模块对信息(url)进行`0/1‘编码, 将得到的`0/1’比特串进行BCH纠错编码得到最终的比
-特串。文档生成器通过串中的0和1分别选择两种字体，按照顺序来生成符合内容要求的文档。
+用户选择需要嵌入的信息(url)和嵌入的文档内容。以二进制为例，模块对信息进行`0/1’编码, 将得到的`0/1’比特串进行BCH纠错编码得到最终的比特串。文档
+生成器通过串中的0和1分别选择两种字体，按照顺序来生成符合内容要求的文档。
 \end_layout
 
 \begin_layout Subsection
@@ -1172,10 +1172,6 @@ status open
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -1207,7 +1203,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-连通域示例。
+连通域示例
 \end_layout
 
 \end_inset
@@ -1232,10 +1228,6 @@ status open
 连通区域分析是一种常用和基本的方法。例如：OCR识别中字符分割提取（车牌识别、文本识别、字幕识别等）、视觉跟踪中的运动前景目标分割与提取（行人入侵检测、遗留物体
 检测、基于视觉的车辆检测与跟踪等）、医学图像处理（感兴趣目标区域提取）等等。也就是说，在需要将前景目标提取出来以便后续进行处理的应用场景中都能够用到连通区域分析
 方法，通常连通区域分析处理的对象是一张二值化后的图像。
-\end_layout
-
-\begin_layout Standard
-具体的算法如下:
 \end_layout
 
 \begin_layout Enumerate
