@@ -4203,7 +4203,7 @@ status open
 LatexCommand bibtex
 btprint "btPrintAll"
 bibfiles "bib"
-options "bibtotoc,plain"
+options "bibtotoc,unsrt"
 
 \end_inset
 
