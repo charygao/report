@@ -935,7 +935,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/generator.png
+	filename figures/generator_1.png
 	width 15cm
 
 \end_inset
@@ -1256,6 +1256,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename figures/pengzhang.png
+	width 70line%
 
 \end_inset
 
@@ -1381,6 +1382,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename figures/liantong.png
+	width 80line%
 
 \end_inset
 
@@ -1560,8 +1562,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename figures/fenge.png
-	width 5cm
-	height 10cm
+	width 70line%
 
 \end_inset
 
@@ -1646,6 +1647,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename figures/result1.png
+	width 70line%
 
 \end_inset
 
@@ -2070,7 +2072,7 @@ status open
 \begin_inset Graphics
 	filename figures/before-fix.jpg
 	lyxscale 10
-	width 10cm
+	width 7cm
 
 \end_inset
 
@@ -2138,7 +2140,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename figures/after-fix.jpg
-	width 8cm
+	width 6cm
 
 \end_inset
 
@@ -2436,7 +2438,7 @@ status open
 \begin_inset Graphics
 	filename figures/system-test/generate-img.png
 	lyxscale 50
-	width 9cm
+	width 7cm
 
 \end_inset
 
