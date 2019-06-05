@@ -808,7 +808,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-文档发布流程图。
+文档发布流程图
 \end_layout
 
 \end_inset
@@ -965,8 +965,8 @@ status open
 \end_layout
 
 \begin_layout Standard
-用户选择需要嵌入的信息(url)和嵌入的文档内容。以二进制为例，模块对信息(url)进行`0/1‘编码, 将得到的`0/1’比特串进行BCH纠错编码得到最终的比
-特串。文档生成器通过串中的0和1分别选择两种字体，按照顺序来生成符合内容要求的文档。
+用户选择需要嵌入的信息(url)和嵌入的文档内容。以二进制为例，模块对信息进行`0/1’编码, 将得到的`0/1’比特串进行BCH纠错编码得到最终的比特串。文档
+生成器通过串中的0和1分别选择两种字体，按照顺序来生成符合内容要求的文档。
 \end_layout
 
 \begin_layout Subsection
@@ -1163,10 +1163,6 @@ status open
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -1198,7 +1194,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-连通域示例。
+连通域示例
 \end_layout
 
 \end_inset
@@ -1216,59 +1212,200 @@ status open
 \end_layout
 
 \begin_layout Standard
-连通区域分析是指将图像中的各个连通区域找出并标记。
+连通域识别和提取算法中使用了图像形式化处理的方法，介绍其中的几个概念：
 \end_layout
 
 \begin_layout Standard
-连通区域分析是一种常用和基本的方法。例如：OCR识别中字符分割提取（车牌识别、文本识别、字幕识别等）、视觉跟踪中的运动前景目标分割与提取（行人入侵检测、遗留物体
-检测、基于视觉的车辆检测与跟踪等）、医学图像处理（感兴趣目标区域提取）等等。也就是说，在需要将前景目标提取出来以便后续进行处理的应用场景中都能够用到连通区域分析
-方法，通常连通区域分析处理的对象是一张二值化后的图像。
+膨胀：
 \end_layout
 
 \begin_layout Standard
-具体的算法如下:
-\end_layout
-
-\begin_layout Enumerate
-记图像为B， 
-\begin_inset Formula $(x,y)$
+作为 
+\begin_inset Formula $Z^{2}$
 \end_inset
 
-为像素位置，扫描图像，直到当前像素点
-\begin_inset Formula $B(x,y)=1$
-\end_inset
-
-：
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-将
-\begin_inset Formula $B(x,y)$
-\end_inset
-
-作为种子（像素位置），并赋予其一个label，然后将该种子相邻的所有前景像素都压入栈中；
-\end_layout
-
-\begin_layout Enumerate
-弹出栈顶像素，赋予其相同的label，然后再将与该栈顶像素相邻的所有前景像素都压入栈中；
-\end_layout
-
-\begin_layout Enumerate
-重复b步骤，直到栈为空；
+中的集合A和B，
 \end_layout
 
 \begin_layout Standard
-此时，便找到了图像B中的一个连通区域，该区域内的像素值被标记为label；
+中的集合A和B，表示为 的B对A的膨胀定义为
 \end_layout
 
-\end_deeper
-\begin_layout Enumerate
-重复第（1）步，直到扫描结束；
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\mathrm{A}\oplus\mathrm{B}=\left\{ \mathrm{z}|(\hat{B})_{z}\cap\mathrm{A}=\emptyset\right\} 
+\end{equation}
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Enumerate
-扫描结束后，就可以得到图像B中所有的连通区域
+\begin_layout Standard
+如图所示：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/pengzhang.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+形式化处理中的膨胀过程
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+同理膨胀过程可以表示为：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+A\oplus B=\left\{ z|\left[(\hat{B})_{z}\cap A\right]\subseteq A\right\} 
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+有了膨胀的概念，则连通分量的提取算法如下所示：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+1.对图像进行二值化处理
+\end_layout
+
+\begin_layout Plain Layout
+2.除了在对应于A中每个连通分量的一个点的每个已知位置处我们已置为1外，该阵列的所有其他元素均为0
+\end_layout
+
+\begin_layout Plain Layout
+3.迭代：
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{equation}
+X_{k}=\left(X_{k-1}\oplus\mathrm{B}\cap\mathrm{A}\right)\quad k=1,2,3,\cdots
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+4.直到
+\begin_inset Formula $X_{k}=X_{k-1}$
+\end_inset
+
+时停止迭代
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $5.X_{k}$
+\end_inset
+
+包含输入图像中的所有连通分量
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+连通域提取算法
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+下图可以完整的体现这个过程：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/liantong.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+连通域提取过程
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -1422,7 +1559,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/char-seg.png
+	filename figures/fenge.png
 	width 5cm
 	height 10cm
 
@@ -1435,7 +1572,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-字符切分流程。
+字符切分流程
 \end_layout
 
 \end_inset
@@ -1452,23 +1589,85 @@ status open
 
 \end_layout
 
-\begin_layout Subsubsection
-Tesseract 介绍
+\begin_layout Standard
+算法如下：
 \end_layout
 
 \begin_layout Standard
-Tesseract是Ray Smith于1985到1995年间在惠普布里斯托实验室开发的一个OCR引擎，曾经在1995 UNLV精确度测试中名列前茅。但1996
-年后基本停止了开发。2006年，Google邀请Smith加盟，重启该项目。目前项目的许可证是Apache 2.0。该项目目前支持Windows、Linux和Ma
-c OS 等主流平台。但作为一个引擎，它只提供命令行工具。
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+1.对图片进行水平投影，找到每一行的上界限和下界限，进行行切割
 \end_layout
 
-\begin_layout Subsubsection
-算法过程
+\begin_layout Plain Layout
+2.对切割出来的每一行，进行垂直投影。
+\end_layout
+
+\begin_layout Plain Layout
+3.找到每一个字符的左右边界，进行单个字符的切割
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+字符切分算法
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-信息恢复模块中, 输入照片校正后, 使用tesseract 对矫正后的照片进行切分, 然后逐个识别, 如果是标点符号则直接丢弃, 如果是中文字,
- 则识别后判断是否在我们的编码字符库中, 如果不在也丢弃, 最后对切分之后的字符图片按照顺序保存, 并输入到神经网络进行分类和解码。
+水平投影和竖向投影的结果如图所示：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/result1.png
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+投影结果
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -3972,14 +4171,9 @@ status open
 \end_layout
 
 \begin_layout Standard
-<<<<<<< HEAD=======
-\end_layout
-
-\begin_layout Standard
->>>>>>> 304ea7104987dce05a05c3615b415849e2d7d14f多媒体技术的发展对泄密溯源技术带来新的挑战。随着智能手机的普及，
-各类重要的机密文件的泄露事件出现频繁。目前各种文件几乎都以电子文档的形式存储，文档显示在电子屏幕上时，信息窃取者通过手机拍摄照片获取文档的信息变得十分容易，而这
-种文档泄密事件的溯源却相当困难。屏摄后的文档图片会出现大量的摩尔纹、噪点、失真等情况，传统的文档水印技术无法在屏摄处理后恢复原始的水印信息。因此需要能够抗屏摄的
-文档水印技术。
+多媒体技术的发展对泄密溯源技术带来新的挑战。随着智能手机的普及，各类重要的机密文件的泄露事件出现频繁。目前各种文件几乎都以电子文档的形式存储，文档显示在电子屏幕
+上时，信息窃取者通过手机拍摄照片获取文档的信息变得十分容易，而这种文档泄密事件的溯源却相当困难。屏摄后的文档图片会出现大量的摩尔纹、噪点、失真等情况，传统的文档
+水印技术无法在屏摄处理后恢复原始的水印信息。因此需要能够抗屏摄的文档水印技术。
 \end_layout
 
 \begin_layout Standard
